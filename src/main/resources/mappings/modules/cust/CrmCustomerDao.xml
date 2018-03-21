@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.cust.dao.CrmCustomerDao">
+    
+	<sql id="crmCustomerColumns">
+		a.id AS "id",
+		a.customer_name AS "customerName",
+		a.phone AS "phone",
+		a.source_type AS "sourceType",
+		a.customer_group AS "customerGroup",
+		a.sex AS "sex",
+		a.age AS "age",
+		a.address AS "address",
+		a.wechat AS "wechat",
+		a.birthday AS "birthday",
+		a.membercard AS "membercard",
+		a.introducer AS "introducer",
+		a.email AS "email",
+		a.qq AS "qq",
+		a.job AS "job",
+		a.idcard AS "idcard",
+		a.customer_no AS "customerNo",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="crmCustomerJoins">
+	</sql>
+    
+	<select id="get" resultType="CrmCustomer">
+		SELECT 
+			<include refid="crmCustomerColumns"/>
+		FROM crm_customer a
+		<include refid="crmCustomerJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CrmCustomer">
+		SELECT 
+			<include refid="crmCustomerColumns"/>
+		FROM crm_customer a
+		<include refid="crmCustomerJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="customerName != null and customerName != ''">
+				AND a.customer_name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{customerName}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{customerName}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{customerName},'%')</if>
+			</if>
+			<if test="phone != null and phone != ''">
+				AND a.phone = #{phone}
+			</if>
+			<if test="sex != null and sex != ''">
+				AND a.sex = #{sex}
+			</if>
+			<if test="membercard != null and membercard != ''">
+				AND a.membercard = #{membercard}
+			</if>
+			<if test="customerNo != null and customerNo != ''">
+				AND a.customer_no = #{customerNo}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CrmCustomer">
+		SELECT 
+			<include refid="crmCustomerColumns"/>
+		FROM crm_customer a
+		<include refid="crmCustomerJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO crm_customer(
+			id,
+			customer_name,
+			phone,
+			source_type,
+			customer_group,
+			sex,
+			age,
+			address,
+			wechat,
+			birthday,
+			membercard,
+			introducer,
+			email,
+			qq,
+			job,
+			idcard,
+			customer_no,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{customerName},
+			#{phone},
+			#{sourceType},
+			#{customerGroup},
+			#{sex},
+			#{age},
+			#{address},
+			#{wechat},
+			#{birthday},
+			#{membercard},
+			#{introducer},
+			#{email},
+			#{qq},
+			#{job},
+			#{idcard},
+			#{customerNo},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE crm_customer SET 	
+			customer_name = #{customerName},
+			phone = #{phone},
+			source_type = #{sourceType},
+			customer_group = #{customerGroup},
+			sex = #{sex},
+			age = #{age},
+			address = #{address},
+			wechat = #{wechat},
+			birthday = #{birthday},
+			membercard = #{membercard},
+			introducer = #{introducer},
+			email = #{email},
+			qq = #{qq},
+			job = #{job},
+			idcard = #{idcard},
+			customer_no = #{customerNo},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE crm_customer SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

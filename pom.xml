@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 	
 	<name>HEYChain</name>
-	<url>http://thinkgem.github.com/jeesite</url>
+	<url>https://github.com/Hey-Chain/healthbeauty.io</url>
 	<inceptionYear>2017-2018</inceptionYear>
 	
 	<!-- 项目属性 -->
@@ -48,7 +48,7 @@
 		<mssql.driver.version>1.3.1</mssql.driver.version>
 	    
 		<!-- environment setting -->
-		<jdk.version>1.6</jdk.version>
+		<jdk.version>1.8</jdk.version>
 		<tomcat.version>2.2</tomcat.version>
 		<jetty.version>7.6.14.v20131031</jetty.version>
 		<webserver.port>8181</webserver.port>
@@ -976,11 +976,11 @@
 	<!-- 开发者信息 -->
 	<developers>  
 		<developer>
-			<id>thinkgem</id>
-			<name>WangZhen</name>
-			<email>thinkgem at 163.com</email>
+			<id>HEY-Chain</id>
+			<name>HEYChain</name>
+			<email>service@healthbeauty.io</email>
 			<roles><role>Project lead</role></roles>
-			<timezone>+8</timezone>
+			<timezone>+6</timezone>
 		</developer>
 	</developers>
 	

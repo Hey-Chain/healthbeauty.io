@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.oa.dao.ReservationDao">
+    
+	<sql id="reservationColumns">
+		a.id AS "id",
+		a.customer_id AS "customerid",
+		a.doctor_id AS "doctorid",
+		a.reservation_time AS "reservationTime",
+		a.project_id AS "projectid",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="reservationJoins">
+	</sql>
+    
+	<select id="get" resultType="Reservation">
+		SELECT 
+			<include refid="reservationColumns"/>
+		FROM oa_reservation a
+		<include refid="reservationJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Reservation">
+		SELECT 
+			<include refid="reservationColumns"/>
+		FROM oa_reservation a
+		<include refid="reservationJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="customerid != null and customerid != ''">
+				AND a.customer_id LIKE 
+					<if test="dbName == 'oracle'">'%'||#{customerid}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{customerid}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{customerid},'%')</if>
+			</if>
+			<if test="doctorid != null and doctorid != ''">
+				AND a.doctor_id = #{doctorid}
+			</if>
+			<if test="reservationTime != null and reservationTime != ''">
+				AND a.reservation_time = #{reservationTime}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Reservation">
+		SELECT 
+			<include refid="reservationColumns"/>
+		FROM oa_reservation a
+		<include refid="reservationJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO oa_reservation(
+			id,
+			customer_id,
+			doctor_id,
+			reservation_time,
+			project_id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{customerid},
+			#{doctorid},
+			#{reservationTime},
+			#{projectid},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE oa_reservation SET 	
+			customer_id = #{customerid},
+			doctor_id = #{doctorid},
+			reservation_time = #{reservationTime},
+			project_id = #{projectid},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE oa_reservation SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

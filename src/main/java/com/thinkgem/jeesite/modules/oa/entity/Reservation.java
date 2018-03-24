@@ -12,16 +12,43 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 预约管理Entity
  * @author HEY-Chain
- * @version 2018-03-23
+ * @version 2018-03-24
  */
 public class Reservation extends DataEntity<Reservation> {
 	
 	private static final long serialVersionUID = 1L;
 	private String customerid;		// 客户
+	private String customerName;	// 客户名称
 	private String doctorid;		// 医生
+	private String doctorName;	// 客户名称
 	private Date reservationTime;		// 预约时间
 	private String projectid;		// 预约项目
+	private String projectName;	// 客户名称
 	
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
 	public Reservation() {
 		super();
 	}

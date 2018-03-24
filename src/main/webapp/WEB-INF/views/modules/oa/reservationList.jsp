@@ -26,16 +26,18 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>客户：</label>
-				<form:input path="customerid" htmlEscape="false" maxlength="64" class="input-medium"/>
+				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li><label>医生：</label>
-				<form:input path="doctorid" htmlEscape="false" maxlength="64" class="input-medium"/>
+				<form:input path="doctorName" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
+			<!-- 
 			<li><label>预约时间：</label>
 				<input name="reservationTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${reservation.reservationTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</li>
+			 -->
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -57,16 +59,16 @@
 		<c:forEach items="${page.list}" var="reservation">
 			<tr>
 				<td><a href="${ctx}/oa/reservation/form?id=${reservation.id}">
-					${reservation.customerid}
+					${reservation.customerName}
 				</a></td>
 				<td>
-					${reservation.doctorid}
+					${reservation.doctorName}
 				</td>
 				<td>
 					<fmt:formatDate value="${reservation.reservationTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
-					${reservation.projectid}
+					${reservation.projectName}
 				</td>
 				<td>
 					<fmt:formatDate value="${reservation.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>

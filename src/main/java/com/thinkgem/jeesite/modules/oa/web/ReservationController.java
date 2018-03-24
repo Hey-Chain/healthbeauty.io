@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.oa.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,13 +21,19 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.cust.entity.CrmCustomer;
+import com.thinkgem.jeesite.modules.cust.service.CrmCustomerService;
+import com.thinkgem.jeesite.modules.oa.entity.OaProject;
 import com.thinkgem.jeesite.modules.oa.entity.Reservation;
+import com.thinkgem.jeesite.modules.oa.service.OaProjectService;
 import com.thinkgem.jeesite.modules.oa.service.ReservationService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
 
 /**
  * 预约管理Controller
  * @author HEY-Chain
- * @version 2018-03-23
+ * @version 2018-03-24
  */
 @Controller
 @RequestMapping(value = "${adminPath}/oa/reservation")
@@ -33,6 +41,15 @@ public class ReservationController extends BaseController {
 
 	@Autowired
 	private ReservationService reservationService;
+
+	@Autowired
+	private OaProjectService projectService;
+
+	@Autowired
+	private CrmCustomerService customerService;
+	
+	@Autowired
+	private SystemService systemService;
 	
 	@ModelAttribute
 	public Reservation get(@RequestParam(required=false) String id) {
@@ -57,6 +74,15 @@ public class ReservationController extends BaseController {
 	@RequiresPermissions("oa:reservation:view")
 	@RequestMapping(value = "form")
 	public String form(Reservation reservation, Model model) {
+		List<OaProject> projectList = projectService.findList(new OaProject());
+		model.addAttribute("projectList", projectList);
+
+		List<CrmCustomer> customerList = customerService.findList(new CrmCustomer());
+		model.addAttribute("customerList", customerList);
+
+		List<User> doctorList = systemService.findUser(new User());
+		model.addAttribute("doctorList", doctorList);
+
 		model.addAttribute("reservation", reservation);
 		return "modules/oa/reservationForm";
 	}

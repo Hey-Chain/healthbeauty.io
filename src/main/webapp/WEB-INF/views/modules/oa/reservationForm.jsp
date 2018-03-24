@@ -36,14 +36,18 @@
 		<div class="control-group">
 			<label class="control-label">客户：</label>
 			<div class="controls">
-				<form:input path="customerid" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+				<form:select path="customerid" class="input-mini">
+					<form:options items="${customerList}" itemLabel="customerName" itemValue="id" htmlEscape="false" />
+				</form:select>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">医生：</label>
 			<div class="controls">
-				<form:input path="doctorid" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+				<form:select path="doctorid" class="input-mini">
+					<form:options items="${doctorList}" itemLabel="name" itemValue="id" htmlEscape="false" />
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
@@ -56,8 +60,9 @@
 		</div>
 		<div class="control-group">
 			<label class="control-label">预约项目：</label>
-			<div class="controls">
-				<form:input path="projectid" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+			<div class="controls"><form:select path="projectid" class="input-mini">
+					<form:options items="${projectList}" itemLabel="projectName" itemValue="id" htmlEscape="false" />
+				</form:select>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

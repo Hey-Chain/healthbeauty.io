@@ -50,6 +50,7 @@
 				<th>医生</th>
 				<th>预约时间</th>
 				<th>预约项目</th>
+				<th>状态</th>
 				<th>更新时间</th>
 				<th>备注</th>
 				<shiro:hasPermission name="oa:reservation:edit"><th>操作</th></shiro:hasPermission>
@@ -69,6 +70,9 @@
 				</td>
 				<td>
 					${reservation.projectName}
+				</td>
+				<td>
+					${fns:getDictLabel(reservation.status, 'remedy_flag', '')}
 				</td>
 				<td>
 					<fmt:formatDate value="${reservation.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>

@@ -16,7 +16,8 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag"
+		a.del_flag AS "delFlag",
+		a.status AS "status"
 	</sql>
 	
 	<sql id="reservationJoins">
@@ -61,6 +62,9 @@
 			<!-- <if test="reservationTime != null and reservationTime != ''">
 				AND a.reservation_time = #{reservationTime}
 			</if> -->
+			<if test="status != null and status != ''">
+				AND a.STATUS = #{status}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -102,7 +106,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			status
 		) VALUES (
 			#{id},
 			#{customerid},
@@ -114,7 +119,8 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{status}
 		)
 	</insert>
 	
@@ -126,7 +132,8 @@
 			project_id = #{projectid},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks}
+			remarks = #{remarks},
+			status = #{status}
 		WHERE id = #{id}
 	</update>
 	

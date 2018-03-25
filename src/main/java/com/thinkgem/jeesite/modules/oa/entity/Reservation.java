@@ -24,6 +24,7 @@ public class Reservation extends DataEntity<Reservation> {
 	private Date reservationTime;		// 预约时间
 	private String projectid;		// 预约项目
 	private String projectName;	// 客户名称
+	private String status;	// 状态
 	
 	public String getCustomerName() {
 		return customerName;
@@ -91,6 +92,15 @@ public class Reservation extends DataEntity<Reservation> {
 
 	public void setProjectid(String projectid) {
 		this.projectid = projectid;
+	}
+	
+	@Length(min=0, max=1, message="状态长度必须介于 0 和 1 之间")
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

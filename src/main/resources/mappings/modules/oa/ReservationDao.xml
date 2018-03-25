@@ -59,9 +59,11 @@
 					<if test="dbName == 'mssql'">'%'+#{doctorName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{doctorName},'%')</if>
 			</if>
-			<!-- <if test="reservationTime != null and reservationTime != ''">
-				AND a.reservation_time = #{reservationTime}
-			</if> -->
+			<if test="reservationTime != null and reservationTime != ''">
+				AND
+				<if test="dbName == 'mssql'">datediff(day, a.reservation_time, #{reservationTime})=0</if>
+				<if test="dbName == 'mysql'">to_days(reservation_time)=to_days(#{reservationTime})</if>
+			</if>
 			<if test="status != null and status != ''">
 				AND a.STATUS = #{status}
 			</if>

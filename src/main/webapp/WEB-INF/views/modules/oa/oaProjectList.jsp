@@ -25,7 +25,7 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>项目编号(助记码)：</label>
+			<li><label>项目编号：</label>
 				<form:input path="projectCode" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>
 			<li><label>项目名称：</label>

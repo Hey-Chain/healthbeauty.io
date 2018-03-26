@@ -33,7 +33,7 @@
 			</li>
 			<li><label>性别：</label>
 				<form:select path="sex" class="input-medium">
-					<form:option value="" label=""/>
+					<form:option value="" label="全部"/>
 					<form:options items="${fns:getDictList('sex')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>
@@ -55,12 +55,8 @@
 				<th>手机号码</th>
 				<th>性别</th>
 				<th>年龄</th>
-				<th>微信号</th>
 				<th>出生日期</th>
 				<th>会员卡号</th>
-				<th>邮箱</th>
-				<th>档案号码</th>
-				<th>更新时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="cust:crmCustomer:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -81,22 +77,10 @@
 					${crmCustomer.age}
 				</td>
 				<td>
-					${crmCustomer.wechat}
-				</td>
-				<td>
 					<fmt:formatDate value="${crmCustomer.birthday}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${crmCustomer.membercard}
-				</td>
-				<td>
-					${crmCustomer.email}
-				</td>
-				<td>
-					${crmCustomer.customerNo}
-				</td>
-				<td>
-					<fmt:formatDate value="${crmCustomer.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${crmCustomer.remarks}

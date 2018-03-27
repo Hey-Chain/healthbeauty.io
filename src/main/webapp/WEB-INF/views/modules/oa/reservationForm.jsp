@@ -4,6 +4,7 @@
 <head>
 	<title>预约管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/common/biz.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
@@ -22,6 +23,9 @@
 					}
 				}
 			});
+			
+			if(!getQueryString('id'))
+				$("#reservationNumber").val(getBillNo());
 		});
 	</script>
 </head>
@@ -33,6 +37,12 @@
 	<form:form id="inputForm" modelAttribute="reservation" action="${ctx}/oa/reservation/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
+		<div class="control-group">
+			<label class="control-label">预约编码：</label>
+			<div class="controls">
+				<form:input path="reservationNumber" htmlEscape="false" maxlength="200" readonly="readonly" class="input-xlarge required"/>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">客户：</label>
 			<div class="controls">

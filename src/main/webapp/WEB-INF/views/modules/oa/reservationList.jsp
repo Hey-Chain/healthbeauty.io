@@ -36,6 +36,9 @@
 					value="<fmt:formatDate value="${reservation.reservationTime}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
+			<li><label>预约编号：</label>
+				<form:input path="reservationNumber" htmlEscape="false" maxlength="64" class="input-medium"/>
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -44,6 +47,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>编号</th>
 				<th>客户</th>
 				<th>医生</th>
 				<th>预约时间</th>
@@ -57,9 +61,12 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="reservation">
 			<tr>
-				<td><a href="${ctx}/oa/reservation/form?id=${reservation.id}">
+				<td>
+					<a href="${ctx}/oa/reservation/form?id=${reservation.id}">${reservation.reservationNumber}</a>
+				</td>
+				<td>
 					${reservation.customerName}
-				</a></td>
+				</td>
 				<td>
 					${reservation.doctorName}
 				</td>

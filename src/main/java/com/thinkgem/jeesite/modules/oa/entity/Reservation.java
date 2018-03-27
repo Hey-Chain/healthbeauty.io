@@ -17,6 +17,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class Reservation extends DataEntity<Reservation> {
 	
 	private static final long serialVersionUID = 1L;
+	private String reservationNumber;//预约编码
 	private String customerid;		// 客户
 	private String customerName;	// 客户名称
 	private String doctorid;		// 医生
@@ -25,6 +26,14 @@ public class Reservation extends DataEntity<Reservation> {
 	private String projectid;		// 预约项目
 	private String projectName;	// 客户名称
 	private String status;	// 状态
+
+	public String getReservationNumber() {
+		return reservationNumber;
+	}
+
+	public void setReservationNumber(String reservationNumber) {
+		this.reservationNumber = reservationNumber;
+	}
 	
 	public String getCustomerName() {
 		return customerName;

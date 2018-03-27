@@ -4,6 +4,7 @@
     
 	<sql id="reservationColumns">
 		a.id AS "id",
+		a.reservation_number AS "reservationNumber",
 		a.customer_id AS "customerid",
 		b.customer_name AS "customerName",
 		a.doctor_id AS "doctorid",
@@ -67,6 +68,12 @@
 			<if test="status != null and status != ''">
 				AND a.STATUS = #{status}
 			</if>
+			<if test="reservationNumber != null and reservationNumber != ''">
+				AND a.reservation_number LIKE 
+					<if test="dbName == 'oracle'">'%'||#{reservationNumber}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{reservationNumber}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{reservationNumber},'%')</if>
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -99,6 +106,7 @@
 	<insert id="insert">
 		INSERT INTO oa_reservation(
 			id,
+			reservation_number,
 			customer_id,
 			doctor_id,
 			reservation_time,
@@ -112,6 +120,7 @@
 			status
 		) VALUES (
 			#{id},
+			#{reservationNumber},
 			#{customerid},
 			#{doctorid},
 			#{reservationTime},
@@ -128,6 +137,7 @@
 	
 	<update id="update">
 		UPDATE oa_reservation SET 	
+			reservation_number = ${reservationNumber},
 			customer_id = #{customerid},
 			doctor_id = #{doctorid},
 			reservation_time = #{reservationTime},

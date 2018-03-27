@@ -1,0 +1,1 @@
+alter table oa_reservation add status char(1) default '0' COMMENT '治疗状态'

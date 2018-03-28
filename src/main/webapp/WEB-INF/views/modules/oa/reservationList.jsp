@@ -44,16 +44,15 @@
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+	<table id="contentTable" class="table table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>预约时间</th>
 				<th>编号</th>
 				<th>客户</th>
 				<th>医生</th>
-				<th>预约时间</th>
 				<th>预约项目</th>
 				<th>状态</th>
-				<th>更新时间</th>
 				<th>备注</th>
 				<shiro:hasPermission name="oa:reservation:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -62,7 +61,9 @@
 		<c:forEach items="${page.list}" var="reservation">
 			<tr>
 				<td>
-					<a href="${ctx}/oa/reservation/form?id=${reservation.id}">${reservation.reservationNumber}</a>
+					<fmt:formatDate value="${reservation.reservationTime}" pattern="yyyy-MM-dd HH:mm"/>
+				</td>
+				<td><a href="${ctx}/oa/reservation/form?id=${reservation.id}">${reservation.reservationNumber}</a>
 				</td>
 				<td>
 					${reservation.customerName}
@@ -71,22 +72,16 @@
 					${reservation.doctorName}
 				</td>
 				<td>
-					<fmt:formatDate value="${reservation.reservationTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<td>
 					${reservation.projectName}
 				</td>
 				<td>
 					${fns:getDictLabel(reservation.status, 'remedy_flag', '')}
 				</td>
 				<td>
-					<fmt:formatDate value="${reservation.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<td>
 					${reservation.remarks}
 				</td>
-				<shiro:hasPermission name="oa:reservation:edit"><td>
-    				<a href="${ctx}/oa/reservation/form?id=${reservation.id}">修改</a>
+					<shiro:hasPermission name="oa:reservation:edit"><td>
+					<a href="${ctx}/oa/attendance/form?reservationId=${reservation.id}&reservationNumber=${reservation.reservationNumber}&customerId=${reservation.customerid}&customerName=${reservation.customerName}">就诊登记</a> | 
 					<a href="${ctx}/oa/reservation/delete?id=${reservation.id}" onclick="return confirmx('确认要删除该预约吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>

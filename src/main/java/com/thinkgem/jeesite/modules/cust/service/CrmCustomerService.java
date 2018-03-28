@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.cust.entity.CrmCustomer;
+import com.thinkgem.jeesite.modules.cust.utils.CustomerUtils;
 import com.thinkgem.jeesite.modules.cust.dao.CrmCustomerDao;
 
 /**
@@ -42,6 +43,10 @@ public class CrmCustomerService extends CrudService<CrmCustomerDao, CrmCustomer>
 	@Transactional(readOnly = false)
 	public void delete(CrmCustomer crmCustomer) {
 		super.delete(crmCustomer);
+	}
+	
+	public List<CrmCustomer> findCustomerByGroup(String customerGroupKey) {
+		return (List<CrmCustomer>)CustomerUtils.getByCustomerGroupKey(customerGroupKey);
 	}
 	
 }

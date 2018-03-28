@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.oa.dao.AttendanceDao">
+    
+	<sql id="attendanceColumns">
+		a.id AS "id",
+		a.customer_id AS "customerId",
+		b.customer_name AS "customerName",
+		a.attendance_time AS "attendanceTime",
+		a.attendance_type AS "attendanceType",
+		a.reservation_id AS "reservation.Id",
+		c.reservation_number AS "reservationNumber",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="attendanceJoins">
+		LEFT JOIN crm_customer b on b.id=a.customer_id
+		LEFT JOIN oa_reservation c on c.id=a.reservation_id
+	</sql>
+    
+	<select id="get" resultType="Attendance">
+		SELECT 
+			<include refid="attendanceColumns"/>
+		FROM oa_attendance a
+		<include refid="attendanceJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Attendance">
+		SELECT 
+			<include refid="attendanceColumns"/>
+		FROM oa_attendance a
+		<include refid="attendanceJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="customerId != null and customerId != ''">
+				AND a.customer_id LIKE 
+					<if test="dbName == 'oracle'">'%'||#{customerId}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{customerId}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{customerId},'%')</if>
+			</if>
+			<if test="customerName != null and customerName != null and customerName != ''">
+				AND b.customer_name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{customerName}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{customerName}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{customerName},'%')</if>
+			</if>
+			<if test="attendanceTime != null and attendanceTime != ''">
+				AND
+				<if test="dbName == 'mssql'">datediff(day, a.attendance_time, #{attendanceTime})=0</if>
+				<if test="dbName == 'mysql'">to_days(attendance_time)=to_days(#{attendanceTime})</if>
+			</if>
+			<if test="attendanceType != null and attendanceType != ''">
+				AND a.attendance_type = #{attendanceType}
+			</if>
+			<if test="reservationNumber != null and reservationNumber != null and reservationNumber != ''">
+				AND c.reservation_number LIKE 
+					<if test="dbName == 'oracle'">'%'||#{reservationNumber}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{reservationNumber}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{reservationNumber},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Attendance">
+		SELECT 
+			<include refid="attendanceColumns"/>
+		FROM oa_attendance a
+		<include refid="attendanceJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO oa_attendance(
+			id,
+			customer_id,
+			attendance_time,
+			attendance_type,
+			reservation_id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{customerId},
+			#{attendanceTime},
+			#{attendanceType},
+			#{reservationId},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE oa_attendance SET 	
+			customer_id = #{customerId},
+			attendance_time = #{attendanceTime},
+			attendance_type = #{attendanceType},
+			reservation_id = #{reservationId},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE oa_attendance SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

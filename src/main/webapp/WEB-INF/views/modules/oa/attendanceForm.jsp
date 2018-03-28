@@ -25,7 +25,7 @@
 			});
 
 			if(!getQueryString('id')){
-				$("#attendanceTime").val(getCurrentDateTime(null));
+				$("#attendanceTime").val(getCurrentDateTime(new Date()));
 				$('input[name=attendanceType]').get(0).checked = true;
 			}
 		});
@@ -65,7 +65,7 @@
 		<div class="control-group">
 			<label class="control-label">预约编号：</label>
 			<div class="controls">
-				<input id="reservationId" name="reservationId" type="hidden" />
+				<form:hidden path="reservationId" />
 				<form:input path="reservationNumber" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 			</div>
 		</div>

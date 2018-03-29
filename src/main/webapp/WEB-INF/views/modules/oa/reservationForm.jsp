@@ -4,6 +4,7 @@
 <head>
 	<title>预约管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/common/dateoperation.js" type="text/javascript"></script>
 	<script src="${ctxStatic}/common/biz.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -24,8 +25,10 @@
 				}
 			});
 			
-			if(!getQueryString('id'))
+			if(!getQueryString('id')){
+				$("#reservationTime").val(getFutureDate(new Date(), 1));
 				$("#reservationNumber").val(getBillNo());
+			}
 		});
 	</script>
 </head>
@@ -63,7 +66,7 @@
 		<div class="control-group">
 			<label class="control-label">预约时间：</label>
 			<div class="controls">
-				<input name="reservationTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+				<input id="reservationTime" name="reservationTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${reservation.reservationTime}" pattern="yyyy-MM-dd HH:mm"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"/>
 			</div>

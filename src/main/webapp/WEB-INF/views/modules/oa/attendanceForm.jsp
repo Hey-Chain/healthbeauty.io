@@ -43,15 +43,15 @@
 			<label class="control-label">客户：</label>
 			<div class="controls">
 				<form:hidden path="customerId" />
-				<form:input path="customerName" htmlEscape="false" readonly="readonly" maxlength="64" class="input-xlarge "/>
+				<form:input path="customerName" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">就诊时间：</label>
 			<div class="controls">
 				<input id="attendanceTime" name="attendanceTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${attendance.attendanceTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${attendance.attendanceTime}" pattern="yyyy-MM-dd HH:mm"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -75,7 +75,7 @@
 			<label class="control-label">预约编号：</label>
 			<div class="controls">
 				<form:hidden path="reservationId" />
-				<form:input path="reservationNumber" htmlEscape="false" readonly="readonly" maxlength="64" class="input-xlarge "/>
+				<form:input path="reservationNumber" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

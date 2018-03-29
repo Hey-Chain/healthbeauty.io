@@ -26,12 +26,12 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>客户：</label>
-				<form:input path="customerId" htmlEscape="false" maxlength="64" class="input-medium"/>
+				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li><label>就诊时间：</label>
 				<input name="attendanceTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${attendance.attendanceTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${attendance.attendanceTime}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
 			<li><label>就诊类型：</label>
 				<form:select path="attendanceType" class="input-medium">
@@ -73,7 +73,7 @@
 					${attendance.reservationNumber}
 				</td>
 				<shiro:hasPermission name="oa:attendance:edit"><td>
-    				<a href="${ctx}/oa/attendance/form?id=${attendance.id}">修改</a>
+    				<a href="${ctx}/oa/attendance/form?id=${attendance.id}">修改</a> | 
 					<a href="${ctx}/oa/attendance/delete?id=${attendance.id}" onclick="return confirmx('确认要删除该就诊信息吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>

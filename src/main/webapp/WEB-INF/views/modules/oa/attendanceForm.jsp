@@ -43,7 +43,7 @@
 			<label class="control-label">客户：</label>
 			<div class="controls">
 				<form:hidden path="customerId" />
-				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+				<form:input path="customerName" htmlEscape="false" readonly="readonly" maxlength="64" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -63,10 +63,19 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">咨询师：</label>
+			<div class="controls">
+				<form:select path="counselorId" class="input-mini">
+					<form:options items="${counselorList}" itemLabel="name" itemValue="id" htmlEscape="false" />
+				</form:select>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">预约编号：</label>
 			<div class="controls">
 				<form:hidden path="reservationId" />
-				<form:input path="reservationNumber" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+				<form:input path="reservationNumber" htmlEscape="false" readonly="readonly" maxlength="64" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

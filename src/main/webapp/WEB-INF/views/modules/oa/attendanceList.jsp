@@ -33,10 +33,10 @@
 					value="<fmt:formatDate value="${attendance.attendanceTime}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
-			<li><label>就诊类型：</label>
-				<form:select path="attendanceType" class="input-medium">
+			<li><label>状态：</label>
+				<form:select path="status" class="input-mini">
 					<form:option value="" label="全部"/>
-					<form:options items="${fns:getDictList('attendance_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+					<form:options items="${fns:getDictList('attendance_status')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</li>
 			<li><label>预约编号：</label>
@@ -74,7 +74,7 @@
 				</td>
 				<shiro:hasPermission name="oa:attendance:edit"><td>
     				<a href="${ctx}/oa/attendance/form?id=${attendance.id}">修改</a> | 
-					<a href="${ctx}/oa/attendance/delete?id=${attendance.id}" onclick="return confirmx('确认要删除该就诊信息吗？', this.href)">删除</a>
+					<%-- <a href="${ctx}/oa/attendance/delete?id=${attendance.id}" onclick="return confirmx('确认要删除该就诊信息吗？', this.href)">删除</a> --%>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

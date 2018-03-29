@@ -17,7 +17,8 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag"
+		a.del_flag AS "delFlag",
+		a.status as "status"
 	</sql>
 	
 	<sql id="attendanceJoins">
@@ -52,14 +53,14 @@
 				<if test="dbName == 'mssql'">datediff(day, a.attendance_time, #{attendanceTime})=0</if>
 				<if test="dbName == 'mysql'">to_days(attendance_time)=to_days(#{attendanceTime})</if>
 			</if>
-			<if test="attendanceType != null and attendanceType != ''">
-				AND a.attendance_type = #{attendanceType}
-			</if>
 			<if test="reservationNumber != null and reservationNumber != null and reservationNumber != ''">
 				AND c.reservation_number LIKE 
 					<if test="dbName == 'oracle'">'%'||#{reservationNumber}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{reservationNumber}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{reservationNumber},'%')</if>
+			</if>
+			<if test="status != null and status != ''">
+				AND a.status = #{status}
 			</if>
 		</where>
 		<choose>
@@ -103,7 +104,8 @@
 			update_date,
 			remarks,
 			del_flag,
-			counselor_id
+			counselor_id,
+			status
 		) VALUES (
 			#{id},
 			#{customerId},
@@ -116,7 +118,8 @@
 			#{updateDate},
 			#{remarks},
 			#{delFlag},
-			#{counselorId}
+			#{counselorId},
+			#{status}
 		)
 	</insert>
 	
@@ -129,7 +132,8 @@
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks},
-			counselor_id = #{counselorId}
+			counselor_id = #{counselorId},
+			status = #{status}
 		WHERE id = #{id}
 	</update>
 	

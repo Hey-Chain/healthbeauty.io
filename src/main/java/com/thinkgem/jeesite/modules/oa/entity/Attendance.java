@@ -26,7 +26,8 @@ public class Attendance extends DataEntity<Attendance> {
 	private String reservationNumber;		// 预约编号
 	private String counselorId;	//咨询师
 	private String counselorName;	//咨询师名称
-
+	private String status;//状态
+	
 	public Attendance() {
 		super();
 	}
@@ -100,5 +101,13 @@ public class Attendance extends DataEntity<Attendance> {
 
 	public void setCounselorName(String counselorName) {
 		this.counselorName = counselorName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

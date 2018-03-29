@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.oa.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +23,9 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.oa.entity.Attendance;
 import com.thinkgem.jeesite.modules.oa.service.AttendanceService;
+import com.thinkgem.jeesite.modules.sys.entity.Role;
+import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
 
 /**
  * 就诊管理Controller
@@ -33,6 +38,9 @@ public class AttendanceController extends BaseController {
 
 	@Autowired
 	private AttendanceService attendanceService;
+
+	@Autowired
+	private SystemService systemService;
 	
 	@ModelAttribute
 	public Attendance get(@RequestParam(required=false) String id) {
@@ -57,7 +65,12 @@ public class AttendanceController extends BaseController {
 	@RequiresPermissions("oa:attendance:view")
 	@RequestMapping(value = "form")
 	public String form(Attendance attendance, Model model) {
+		
+		List<User> doctors = systemService.findUserByRoleId(Role.COUNSELOR_ROLE_ID);
+		
+		model.addAttribute("counselorList", doctors);
 		model.addAttribute("attendance", attendance);
+		
 		return "modules/oa/attendanceForm";
 	}
 

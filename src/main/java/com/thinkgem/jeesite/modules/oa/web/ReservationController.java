@@ -27,6 +27,7 @@ import com.thinkgem.jeesite.modules.oa.entity.OaProject;
 import com.thinkgem.jeesite.modules.oa.entity.Reservation;
 import com.thinkgem.jeesite.modules.oa.service.OaProjectService;
 import com.thinkgem.jeesite.modules.oa.service.ReservationService;
+import com.thinkgem.jeesite.modules.sys.entity.Role;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
 
@@ -76,12 +77,12 @@ public class ReservationController extends BaseController {
 	public String form(Reservation reservation, Model model) {
 		List<OaProject> projectList = projectService.findList(new OaProject());
 		model.addAttribute("projectList", projectList);
-
+		
 		List<CrmCustomer> customerList = customerService.findList(new CrmCustomer());
 		model.addAttribute("customerList", customerList);
 
-		List<User> doctorList = systemService.findUser(new User());
-		model.addAttribute("doctorList", doctorList);
+		List<User> doctors = systemService.findUserByRoleId(Role.DOCTOR_ROLE_ID);
+		model.addAttribute("doctorList", doctors);
 
 		model.addAttribute("reservation", reservation);
 		return "modules/oa/reservationForm";

@@ -33,7 +33,7 @@ public class Role extends DataEntity<Role> {
 	
 	private User user;		// 根据用户ID查询角色列表
 
-//	private List<User> userList = Lists.newArrayList(); // 拥有用户列表
+	//	private List<User> userList = Lists.newArrayList(); // 拥有用户列表
 	private List<Menu> menuList = Lists.newArrayList(); // 拥有菜单列表
 	private List<Office> officeList = Lists.newArrayList(); // 按明细设置数据范围
 
@@ -45,6 +45,10 @@ public class Role extends DataEntity<Role> {
 	public static final String DATA_SCOPE_OFFICE = "5";
 	public static final String DATA_SCOPE_SELF = "8";
 	public static final String DATA_SCOPE_CUSTOM = "9";
+	
+	public static final String DOCTOR_ROLE_ID ="2";//doctor
+	public static final String GUIDE_ROLE_ID ="3";//guide
+	public static final String COUNSELOR_ROLE_ID ="5";//counselor
 	
 	public Role() {
 		super();

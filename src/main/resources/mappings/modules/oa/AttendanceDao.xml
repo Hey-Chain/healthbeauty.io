@@ -8,8 +8,10 @@
 		b.customer_name AS "customerName",
 		a.attendance_time AS "attendanceTime",
 		a.attendance_type AS "attendanceType",
-		a.reservation_id AS "reservation.Id",
+		a.reservation_id AS "reservationId",
 		c.reservation_number AS "reservationNumber",
+		a.counselor_id AS "counselorId",
+		d.name AS "counselorName",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -21,6 +23,7 @@
 	<sql id="attendanceJoins">
 		LEFT JOIN crm_customer b on b.id=a.customer_id
 		LEFT JOIN oa_reservation c on c.id=a.reservation_id
+		LEFT JOIN sys_user d on d.id=a.counselor_id
 	</sql>
     
 	<select id="get" resultType="Attendance">
@@ -38,12 +41,6 @@
 		<include refid="attendanceJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="customerId != null and customerId != ''">
-				AND a.customer_id LIKE 
-					<if test="dbName == 'oracle'">'%'||#{customerId}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{customerId}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{customerId},'%')</if>
-			</if>
 			<if test="customerName != null and customerName != null and customerName != ''">
 				AND b.customer_name LIKE 
 					<if test="dbName == 'oracle'">'%'||#{customerName}||'%'</if>
@@ -70,7 +67,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.attendance_time ASC
 			</otherwise>
 		</choose>
 	</select>
@@ -105,7 +102,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			counselor_id
 		) VALUES (
 			#{id},
 			#{customerId},
@@ -117,7 +115,8 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{counselorId}
 		)
 	</insert>
 	
@@ -129,7 +128,8 @@
 			reservation_id = #{reservationId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks}
+			remarks = #{remarks},
+			counselor_id = #{counselorId}
 		WHERE id = #{id}
 	</update>
 	

@@ -24,6 +24,8 @@ public class Attendance extends DataEntity<Attendance> {
 	private String attendanceType;		// 就诊类型
 	private String reservationId;		// 预约编号
 	private String reservationNumber;		// 预约编号
+	private String counselorId;	//咨询师
+	private String counselorName;	//咨询师名称
 
 	public Attendance() {
 		super();
@@ -83,5 +85,20 @@ public class Attendance extends DataEntity<Attendance> {
 
 	public void setReservationNumber(String reservationNumber) {
 		this.reservationNumber = reservationNumber;
+	}
+	public String getCounselorId() {
+		return counselorId;
+	}
+
+	public void setCounselorId(String guideId) {
+		this.counselorId = guideId;
+	}
+
+	public String getCounselorName() {
+		return counselorName;
+	}
+
+	public void setCounselorName(String counselorName) {
+		this.counselorName = counselorName;
 	}
 }

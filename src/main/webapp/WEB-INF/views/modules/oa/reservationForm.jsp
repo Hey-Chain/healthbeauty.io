@@ -28,6 +28,7 @@
 			if(!getQueryString('id')){
 				$("#reservationTime").val(getFutureDate(new Date(), 1));
 				$("#reservationNumber").val(getBillNo());
+				$("input[name='status']").get(0).checked = true;
 			}
 		});
 	</script>
@@ -82,8 +83,7 @@
 		<div class="control-group">
 			<label class="control-label">状态：</label>
 			<div class="controls">
-				<form:radiobuttons path="status" items="${fns:getDictList('remedy_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
-				<span class="help-inline"><font color="red">*</font></span>
+				<form:radiobuttons path="status" items="${fns:getDictList('remedy_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 			</div>
 		</div>
 		<div class="control-group">

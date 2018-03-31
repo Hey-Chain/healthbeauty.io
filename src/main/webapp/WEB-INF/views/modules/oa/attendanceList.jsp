@@ -53,6 +53,7 @@
 				<th>就诊时间</th>
 				<th>客户</th>
 				<th>就诊类型</th>
+				<th>状态</th>
 				<th>预约编号</th>
 				<shiro:hasPermission name="oa:attendance:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -70,11 +71,14 @@
 					${fns:getDictLabel(attendance.attendanceType, 'attendance_type', '')}
 				</td>
 				<td>
+					${fns:getDictLabel(attendance.status, 'attendance_status', '')}
+				</td>
+				<td>
 					${attendance.reservationNumber}
 				</td>
 				<shiro:hasPermission name="oa:attendance:edit"><td>
-    				<a href="${ctx}/oa/attendance/form?id=${attendance.id}">修改</a> | 
-					<%-- <a href="${ctx}/oa/attendance/delete?id=${attendance.id}" onclick="return confirmx('确认要删除该就诊信息吗？', this.href)">删除</a> --%>
+    				<a href="${ctx}/oa/attendance/form?id=${attendance.id}">修改</a> 
+					<%-- | <a href="${ctx}/oa/attendance/delete?id=${attendance.id}" onclick="return confirmx('确认要删除该就诊信息吗？', this.href)">删除</a> --%>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

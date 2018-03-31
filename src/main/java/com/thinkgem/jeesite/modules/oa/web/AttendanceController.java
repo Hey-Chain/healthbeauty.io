@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,9 @@ import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.oa.entity.Attendance;
+import com.thinkgem.jeesite.modules.oa.entity.Reservation;
 import com.thinkgem.jeesite.modules.oa.service.AttendanceService;
+import com.thinkgem.jeesite.modules.oa.service.ReservationService;
 import com.thinkgem.jeesite.modules.sys.entity.Role;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
@@ -41,6 +44,9 @@ public class AttendanceController extends BaseController {
 
 	@Autowired
 	private SystemService systemService;
+	
+	@Autowired
+	private ReservationService reservationService;
 	
 	@ModelAttribute
 	public Attendance get(@RequestParam(required=false) String id) {
@@ -76,11 +82,20 @@ public class AttendanceController extends BaseController {
 
 	@RequiresPermissions("oa:attendance:edit")
 	@RequestMapping(value = "save")
+	@Transactional()
 	public String save(Attendance attendance, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, attendance)){
 			return form(attendance, model);
 		}
+
+		if(attendance.getIsNewRecord() && StringUtils.isNotBlank(attendance.getReservationId())) {
+			Reservation reservation = reservationService.get(attendance.getReservationId());
+			reservation.setStatus("1");
+			reservationService.save(reservation);
+		}
+		
 		attendanceService.save(attendance);
+		
 		addMessage(redirectAttributes, "保存就诊信息成功");
 		return "redirect:"+Global.getAdminPath()+"/oa/attendance/?repage";
 	}

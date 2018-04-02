@@ -75,6 +75,11 @@ public class ReservationController extends BaseController {
 	@RequiresPermissions("oa:reservation:view")
 	@RequestMapping(value = "form")
 	public String form(Reservation reservation, Model model) {
+
+		if(reservation.getIsNewRecord() && StringUtils.isNotBlank(reservation.getCustomerId())) {
+			reservation.setCustomerName(customerService.get(reservation.getCustomerId()).getCustomerName());
+		}
+		
 		List<OaProject> projectList = projectService.findList(new OaProject());
 		model.addAttribute("projectList", projectList);
 		

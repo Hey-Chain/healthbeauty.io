@@ -18,12 +18,12 @@ public class Reservation extends DataEntity<Reservation> {
 	
 	private static final long serialVersionUID = 1L;
 	private String reservationNumber;//预约编码
-	private String customerid;		// 客户
+	private String customerId;		// 客户
 	private String customerName;	// 客户名称
-	private String doctorid;		// 医生
+	private String doctorId;		// 医生
 	private String doctorName;	// 客户名称
 	private Date reservationTime;		// 预约时间
-	private String projectid;		// 预约项目
+	private String projectId;		// 预约项目
 	private String projectName;	// 客户名称
 	private String status;	// 状态
 
@@ -68,21 +68,21 @@ public class Reservation extends DataEntity<Reservation> {
 	}
 
 	@Length(min=1, max=64, message="客户长度必须介于 1 和 64 之间")
-	public String getCustomerid() {
-		return customerid;
+	public String getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerid(String customerid) {
-		this.customerid = customerid;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 	
 	@Length(min=0, max=64, message="医生长度必须介于 0 和 64 之间")
-	public String getDoctorid() {
-		return doctorid;
+	public String getDoctorId() {
+		return doctorId;
 	}
 
-	public void setDoctorid(String doctorid) {
-		this.doctorid = doctorid;
+	public void setDoctorId(String doctorId) {
+		this.doctorId = doctorId;
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -95,12 +95,12 @@ public class Reservation extends DataEntity<Reservation> {
 	}
 	
 	@Length(min=1, max=64, message="预约项目长度必须介于 1 和 64 之间")
-	public String getProjectid() {
-		return projectid;
+	public String getProjectId() {
+		return projectId;
 	}
 
-	public void setProjectid(String projectid) {
-		this.projectid = projectid;
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
 	}
 	
 	@Length(min=0, max=1, message="状态长度必须介于 0 和 1 之间")

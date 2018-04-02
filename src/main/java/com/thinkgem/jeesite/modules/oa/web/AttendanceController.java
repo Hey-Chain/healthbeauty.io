@@ -22,6 +22,7 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.cust.service.CrmCustomerService;
 import com.thinkgem.jeesite.modules.oa.entity.Attendance;
 import com.thinkgem.jeesite.modules.oa.entity.Reservation;
 import com.thinkgem.jeesite.modules.oa.service.AttendanceService;
@@ -47,6 +48,9 @@ public class AttendanceController extends BaseController {
 	
 	@Autowired
 	private ReservationService reservationService;
+
+	@Autowired
+	private CrmCustomerService customerService;
 	
 	@ModelAttribute
 	public Attendance get(@RequestParam(required=false) String id) {
@@ -71,6 +75,10 @@ public class AttendanceController extends BaseController {
 	@RequiresPermissions("oa:attendance:view")
 	@RequestMapping(value = "form")
 	public String form(Attendance attendance, Model model) {
+		
+		if(attendance.getIsNewRecord() && StringUtils.isNotBlank(attendance.getCustomerId())) {
+			attendance.setCustomerName(customerService.get(attendance.getCustomerId()).getCustomerName());
+		}
 		
 		List<User> doctors = systemService.findUserByRoleId(Role.COUNSELOR_ROLE_ID);
 		

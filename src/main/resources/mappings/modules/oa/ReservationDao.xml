@@ -5,12 +5,12 @@
 	<sql id="reservationColumns">
 		a.id AS "id",
 		a.reservation_number AS "reservationNumber",
-		a.customer_id AS "customerid",
+		a.customer_id AS "customerId",
 		b.customer_name AS "customerName",
-		a.doctor_id AS "doctorid",
+		a.doctor_id AS "doctorId",
 		c.name AS "doctorName",
 		a.reservation_time AS "reservationTime",
-		a.project_id AS "projectid",
+		a.project_id AS "projectId",
 		d.project_name AS "projectName",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -42,8 +42,8 @@
 		<include refid="reservationJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="customerid != null and customerid != ''">
-				AND a.customer_id=#{customerid}
+			<if test="customerId != null and customerId != ''">
+				AND a.customer_id=#{customerId}
 			</if>
 			<if test="customerName != null and customerName != ''">
 				AND b.customer_name LIKE 
@@ -51,8 +51,8 @@
 					<if test="dbName == 'mssql'">'%'+#{customerName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{customerName},'%')</if>
 			</if>
-			<if test="doctorid != null and doctorid != ''">
-				AND a.doctor_id = #{doctorid}
+			<if test="doctorId != null and doctorId != ''">
+				AND a.doctor_id = #{doctorId}
 			</if>
 			<if test="doctorName != null and doctorName != ''">
 				AND c.name LIKE  
@@ -121,10 +121,10 @@
 		) VALUES (
 			#{id},
 			#{reservationNumber},
-			#{customerid},
-			#{doctorid},
+			#{customerId},
+			#{doctorId},
 			#{reservationTime},
-			#{projectid},
+			#{projectId},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -138,10 +138,10 @@
 	<update id="update">
 		UPDATE oa_reservation SET 	
 			reservation_number = ${reservationNumber},
-			customer_id = #{customerid},
-			doctor_id = #{doctorid},
+			customer_id = #{customerId},
+			doctor_id = #{doctorId},
 			reservation_time = #{reservationTime},
-			project_id = #{projectid},
+			project_id = #{projectId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks},

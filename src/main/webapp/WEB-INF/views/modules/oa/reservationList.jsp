@@ -81,7 +81,7 @@
 					${reservation.remarks}
 				</td>
 					<shiro:hasPermission name="oa:reservation:edit"><td>
-					<a href="${ctx}/oa/attendance/form?reservationId=${reservation.id}&reservationNumber=${reservation.reservationNumber}&customerId=${reservation.customerid}&customerName=${reservation.customerName}">就诊登记</a> | 
+					<a href="${ctx}/oa/attendance/form?reservationId=${reservation.id}&reservationNumber=${reservation.reservationNumber}&customerId=${reservation.customerId}">就诊登记</a> | 
 					<a href="${ctx}/oa/reservation/delete?id=${reservation.id}" onclick="return confirmx('确认要删除该预约吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>

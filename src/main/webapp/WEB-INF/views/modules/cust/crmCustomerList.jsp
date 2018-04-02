@@ -87,8 +87,8 @@
 				</td>
 				<shiro:hasPermission name="cust:crmCustomer:edit"><td>
     				<a href="${ctx}/cust/crmCustomer/form?id=${crmCustomer.id}">修改</a> | 
-    				<a href="${ctx}/oa/reservation/form?customerId=${crmCustomer.id}&customerName=${crmCustomer.customerName}">预约</a> |  
-    				<a href="${ctx}/oa/attendance/form?customerId=${crmCustomer.id}&customerName=${crmCustomer.customerName}">就诊</a> | 
+    				<a href="${ctx}/oa/reservation/form?customerId=${crmCustomer.id}">预约</a> | 
+    				<a href="${ctx}/oa/attendance/form?customerId=${crmCustomer.id}">就诊</a> | 
     				<a href="${ctx}/cust/crmCustomer/delete?id=${crmCustomer.id}" onclick="return confirmx('确认要删除该客户信息吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>

@@ -127,6 +127,9 @@ function getFutureDate(date, day) {
     if (strMonth < 10) {
         strMonth = "0" + strMonth;
     }
+    if (strDay < 10) {
+        strDay = "0" + strDay;
+    }
     datastr = strYear + "-" + strMonth + "-" + strDay;
     return datastr;
 };

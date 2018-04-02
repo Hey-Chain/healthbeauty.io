@@ -17,6 +17,8 @@ public class OaProject extends DataEntity<OaProject> {
 	private static final long serialVersionUID = 1L;
 	private String projectCode;		// 项目编号(助记码)
 	private String projectName;		// 项目名称
+	private String unitId;		// 单位Id
+	private String price;		// 项目名称
 	
 	public OaProject() {
 		super();
@@ -42,6 +44,22 @@ public class OaProject extends DataEntity<OaProject> {
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+
+	public String getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(String unitId) {
+		this.unitId = unitId;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 	
 }

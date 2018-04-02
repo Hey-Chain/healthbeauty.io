@@ -48,6 +48,22 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">单位：</label>
+			<div class="controls">
+				<form:select path="unitId" class="input-mini">
+					<form:options items="${fns:getDictList('unit')}" itemLabel="label" itemValue="value" htmlEscape="false" />
+				</form:select>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">价格：</label>
+			<div class="controls">
+				<form:input path="price" htmlEscape="false" maxlength="32" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">备注：</label>
 			<div class="controls">
 				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>

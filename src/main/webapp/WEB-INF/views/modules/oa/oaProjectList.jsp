@@ -41,6 +41,8 @@
 			<tr>
 				<th>项目编号(助记码)</th>
 				<th>项目名称</th>
+				<th>单位</th>
+				<th>单价</th>
 				<th>更新时间</th>
 				<th>备注</th>
 				<shiro:hasPermission name="oa:oaProject:edit"><th>操作</th></shiro:hasPermission>
@@ -52,6 +54,12 @@
 				<td><a href="${ctx}/oa/oaProject/form?id=${oaProject.id}">
 					${oaProject.projectCode}
 				</a></td>
+				<td>
+					${fns:getDictLabel(oaProject.unitId, 'unit', '')}
+				</td>
+				<td>
+					${oaProject.price}
+				</td>
 				<td>
 					${oaProject.projectName}
 				</td>

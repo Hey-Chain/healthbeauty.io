@@ -22,8 +22,8 @@ public class Billitem extends DataEntity<Billitem> {
 	private String doctorName;		// 医生名称
 	private String quantity;		// 数量
 	private String unit;		//单位
-	private String originalprice;	// 原价
-	private String dealprice;		// 成交价
+	private Double originalprice;	// 原价
+	private Double dealprice;		// 成交价
 	
 	public Billitem() {
 		super();
@@ -83,20 +83,20 @@ public class Billitem extends DataEntity<Billitem> {
 	}
 	
 	@Length(min=1, max=64, message="原价长度必须介于 1 和 64 之间")
-	public String getOriginalprice() {
+	public Double getOriginalprice() {
 		return originalprice;
 	}
 
-	public void setOriginalprice(String originalprice) {
+	public void setOriginalprice(Double originalprice) {
 		this.originalprice = originalprice;
 	}
 	
 	@Length(min=1, max=64, message="成交价长度必须介于 1 和 64 之间")
-	public String getDealprice() {
+	public Double getDealprice() {
 		return dealprice;
 	}
 
-	public void setDealprice(String dealprice) {
+	public void setDealprice(Double dealprice) {
 		this.dealprice = dealprice;
 	}
 

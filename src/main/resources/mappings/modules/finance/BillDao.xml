@@ -4,6 +4,7 @@
     
 	<sql id="billColumns">
 		a.id AS "id",
+		a.bill_number AS "billNumber",
 		a.customer_id AS "customerId",
 		b.customer_name AS "customerName",
 		a.bill_time AS "billTime",
@@ -47,6 +48,12 @@
 				<if test="dbName == 'mssql'">datediff(day, a.bill_time, #{billTime})=0</if>
 				<if test="dbName == 'mysql'">to_days(bill_time)=to_days(#{billTime})</if>
 			</if>
+			<if test="billNumber != null and billNumber != ''">
+				AND bill_number LIKE 
+				<if test="dbName == 'oracle'">'%'||#{billNumber}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{billNumber}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{billNumber},'%')</if>
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -79,6 +86,7 @@
 	<insert id="insert">
 		INSERT INTO f_bill(
 			id,
+			bill_number,
 			customer_id,
 			bill_time,
 			attendance_id,
@@ -91,6 +99,7 @@
 			del_flag
 		) VALUES (
 			#{id},
+			#billNumber,
 			#{customerId},
 			#{billTime},
 			#{attendanceId},
@@ -106,6 +115,7 @@
 	
 	<update id="update">
 		UPDATE f_bill SET 	
+			bill_number = #{billNumber},
 			customer_id = #{customerId},
 			bill_time = #{billTime},
 			is_paid = #{isPaid},

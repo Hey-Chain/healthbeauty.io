@@ -5,6 +5,7 @@
 	<title>收费单管理</title>
 	<meta name="decorator" content="default"/>
 	<script src="${ctxStatic}/common/dateoperation.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/common/biz.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var projectListData = ${fns:toJson(projectList)};
 		var unitListData = ${fns:getDictListJson('unit')};
@@ -29,6 +30,7 @@
 			if(!getQueryString('id')){
 				$('input[name=isPaid]').get(0).checked = true;
 				$("#billTime").val(getCurrentDateTime(new Date()));
+				$("#billNumber").val(getBillNo());
 			}
 		});
 		function addRow(list, idx, tpl, row){
@@ -106,7 +108,13 @@
 	<form:form id="inputForm" modelAttribute="bill" action="${ctx}/finance/bill/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<form:hidden path="attendanceId"/>
-		<sys:message content="${message}"/>		
+		<sys:message content="${message}"/>
+		<div class="control-group">
+			<label class="control-label">收费单号：</label>
+			<div class="controls">
+				<form:input path="billNumber" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge "/>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">客户：</label>
 			<div class="controls">

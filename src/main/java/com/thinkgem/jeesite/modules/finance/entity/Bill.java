@@ -20,6 +20,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class Bill extends DataEntity<Bill> {
 	
 	private static final long serialVersionUID = 1L;
+	private String billNumber;	//收费单编码
 	private String customerId;		// 客户
 	private String customerName;	// 客户
 	private Date billTime;		// 开单时间
@@ -33,6 +34,14 @@ public class Bill extends DataEntity<Bill> {
 
 	public Bill(String id){
 		super(id);
+	}
+
+	public String getBillNumber() {
+		return billNumber;
+	}
+
+	public void setBillNumber(String billNumber) {
+		this.billNumber = billNumber;
 	}
 
 	@Length(min=1, max=64, message="客户长度必须介于 1 和 64 之间")

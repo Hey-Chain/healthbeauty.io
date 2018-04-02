@@ -41,6 +41,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>收费单</th>
 				<th>客户</th>
 				<th>开单时间</th>
 				<th>更新时间</th>
@@ -52,8 +53,11 @@
 		<c:forEach items="${page.list}" var="bill">
 			<tr>
 				<td><a href="${ctx}/finance/bill/form?id=${bill.id}">
+					${bill.billNumber}</a>
+				</td>
+				<td>
 					${bill.customerName}
-				</a></td>
+				</td>
 				<td>
 					<fmt:formatDate value="${bill.billTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
@@ -64,7 +68,8 @@
 					${bill.remarks}
 				</td>
 				<shiro:hasPermission name="finance:bill:edit"><td>
-    				<a href="${ctx}/finance/bill/form?id=${bill.id}">修改</a>
+					<a href="${ctx}/finance/payment/form?billId=${bill.id}">收费</a> | 
+    				<a href="${ctx}/finance/bill/form?id=${bill.id}">修改</a> | 
 					<a href="${ctx}/finance/bill/delete?id=${bill.id}" onclick="return confirmx('确认要删除该收费单吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>

@@ -34,6 +34,12 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
+			<label class="control-label">会员卡号：</label>
+			<div class="controls">
+				<form:input path="membercard" htmlEscape="false" maxlength="32" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">姓名：</label>
 			<div class="controls">
 				<form:input path="customerName" htmlEscape="false" maxlength="32" class="input-xlarge required"/>
@@ -44,25 +50,6 @@
 			<label class="control-label">手机号码：</label>
 			<div class="controls">
 				<form:input path="phone" htmlEscape="false" maxlength="32" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">来源：</label>
-			<div class="controls">
-				<form:select path="sourceType" class="input-xlarge ">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('source_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">客户组：</label>
-			<div class="controls">
-				<form:select path="customerGroup" class="input-xlarge required">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('customer_group')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
@@ -102,21 +89,46 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">会员卡号：</label>
+			<label class="control-label">邮箱：</label>
 			<div class="controls">
-				<form:input path="membercard" htmlEscape="false" maxlength="32" class="input-xlarge "/>
+				<form:input path="email" htmlEscape="false" maxlength="50" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">证件号码：</label>
+			<div class="controls">
+				<form:input path="idcard" htmlEscape="false" maxlength="16" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">客户组：</label>
+			<div class="controls">
+				<form:select path="customerGroup" class="input-xlarge required">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('customer_group')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">档案号码：</label>
+			<div class="controls">
+				<form:input path="customerNo" htmlEscape="false" maxlength="16" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">来源：</label>
+			<div class="controls">
+				<form:select path="sourceType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('source_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">介绍人：</label>
 			<div class="controls">
 				<form:input path="introducer" htmlEscape="false" maxlength="32" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">邮箱：</label>
-			<div class="controls">
-				<form:input path="email" htmlEscape="false" maxlength="50" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -129,18 +141,6 @@
 			<label class="control-label">职业：</label>
 			<div class="controls">
 				<form:input path="job" htmlEscape="false" maxlength="16" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">证件号码：</label>
-			<div class="controls">
-				<form:input path="idcard" htmlEscape="false" maxlength="16" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">档案号码：</label>
-			<div class="controls">
-				<form:input path="customerNo" htmlEscape="false" maxlength="16" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

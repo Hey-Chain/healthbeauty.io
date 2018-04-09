@@ -25,6 +25,9 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>会员卡号：</label>
+				<form:input path="membercard" htmlEscape="false" maxlength="32" class="input-medium"/>
+			</li>
 			<li><label>姓名：</label>
 				<form:input path="customerName" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>
@@ -37,12 +40,6 @@
 					<form:options items="${fns:getDictList('sex')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>
-			<li><label>会员卡号：</label>
-				<form:input path="membercard" htmlEscape="false" maxlength="32" class="input-medium"/>
-			</li>
-			<li><label>档案号码：</label>
-				<form:input path="customerNo" htmlEscape="false" maxlength="16" class="input-medium"/>
-			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -51,12 +48,12 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>会员卡号</th>
 				<th>姓名</th>
 				<th>手机号码</th>
 				<th>性别</th>
 				<th>年龄</th>
 				<th>出生日期</th>
-				<th>会员卡号</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="cust:crmCustomer:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -64,6 +61,9 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="crmCustomer">
 			<tr>
+				<td>
+					${crmCustomer.membercard}
+				</td>
 				<td><a href="${ctx}/cust/crmCustomer/form?id=${crmCustomer.id}">
 					${crmCustomer.customerName}
 				</a></td>
@@ -78,9 +78,6 @@
 				</td>
 				<td>
 					<fmt:formatDate value="${crmCustomer.birthday}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<td>
-					${crmCustomer.membercard}
 				</td>
 				<td>
 					${crmCustomer.remarks}

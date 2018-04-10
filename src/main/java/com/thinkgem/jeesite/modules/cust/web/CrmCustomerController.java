@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.thinkgem.jeesite.common.config.Global;
+import com.thinkgem.jeesite.common.mapper.JsonMapper;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
@@ -137,4 +138,11 @@ public class CrmCustomerController extends BaseController {
 		return mapList;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "getByMemberCard")
+	public CrmCustomer getByMemberCard(String memberCard) {
+		CrmCustomer searchCustomer = new CrmCustomer();
+		searchCustomer.setMembercard(memberCard);
+		return crmCustomerService.get(searchCustomer);
+	}
 }

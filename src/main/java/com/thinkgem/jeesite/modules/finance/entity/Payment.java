@@ -19,6 +19,8 @@ public class Payment extends DataEntity<Payment> {
 	private static final long serialVersionUID = 1L;
 	private String billId;		// 收费单
 	private String billNumber;	//收费单编码
+	private String customerName;//客户名改
+	private String memberCard;	//会员卡号
 	private Date paymentTime;		// 付款时间
 	private String paymentType;		// 付款方式
 	private Double payable;		// 应付金额
@@ -47,6 +49,22 @@ public class Payment extends DataEntity<Payment> {
 
 	public void setBillNumber(String billNumber) {
 		this.billNumber = billNumber;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getMemberCard() {
+		return memberCard;
+	}
+
+	public void setMemberCard(String memberCard) {
+		this.memberCard = memberCard;
 	}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

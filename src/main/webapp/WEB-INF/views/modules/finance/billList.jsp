@@ -25,6 +25,9 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>会员卡号：</label>
+				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-medium"/>
+			</li>
 			<li><label>客户：</label>
 				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
@@ -41,8 +44,9 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>收费单</th>
 				<th>客户</th>
+				<th>会员卡号</th>
+				<th>收费单</th>
 				<th>开单时间</th>
 				<th>更新时间</th>
 				<th>备注</th>
@@ -52,11 +56,14 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="bill">
 			<tr>
-				<td><a href="${ctx}/finance/bill/form?id=${bill.id}">
-					${bill.billNumber}</a>
-				</td>
 				<td>
 					${bill.customerName}
+				</td>
+				<td>
+					${bill.memberCard}
+				</td>
+				<td><a href="${ctx}/finance/bill/form?id=${bill.id}">
+					${bill.billNumber}</a>
 				</td>
 				<td>
 					<fmt:formatDate value="${bill.billTime}" pattern="yyyy-MM-dd HH:mm:ss"/>

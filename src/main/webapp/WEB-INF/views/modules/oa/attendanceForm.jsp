@@ -28,6 +28,28 @@
 				$("#attendanceTime").val(getCurrentDateTime(new Date()));
 				$('input[name=attendanceType]').get(0).checked = true;
 			}
+			
+			$('#memberCard').keyup(function (event) { 
+			   if (event.keyCode == "13") { 
+				   event.preventDefault();
+				   //获取客户信息
+					loading('正在获取客户，请稍等...');
+					
+					var inputMemberCard = $('#memberCard').val();
+					$.get('${ctx}/cust/crmCustomer/getByMemberCard' ,{memberCard: inputMemberCard}, function(data) {
+						top.$.jBox.closeTip();
+						if(data != null){
+							$('#customerId').val(data.customerId);
+							$('#customerName').val(data.customerName);
+						}else{
+							$("#messageBox").text("没有找到该卡号信息，稍后先确认会员信息！");
+						}
+					}).fail(function() {
+						top.$.jBox.closeTip();
+						$("#messageBox").text("获取客户信息失败，请稍后再试！");
+					});
+			   }
+			})
 		});
 	</script>
 </head>
@@ -39,6 +61,12 @@
 	<form:form id="inputForm" modelAttribute="attendance" action="${ctx}/oa/attendance/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
+		<div class="control-group">
+			<label class="control-label">会员卡号：</label>
+			<div class="controls">
+				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-xlarge " />
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">客户：</label>
 			<div class="controls">
@@ -93,7 +121,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="oa:attendance:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<shiro:hasPermission name="oa:attendance:edit"><input id="btnSubmit" class="btn btn-primary" type="button" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

@@ -7,6 +7,7 @@
 		a.reservation_number AS "reservationNumber",
 		a.customer_id AS "customerId",
 		b.customer_name AS "customerName",
+		b.membercard AS "memberCard",
 		a.doctor_id AS "doctorId",
 		c.name AS "doctorName",
 		a.reservation_time AS "reservationTime",
@@ -54,11 +55,11 @@
 			<if test="doctorId != null and doctorId != ''">
 				AND a.doctor_id = #{doctorId}
 			</if>
-			<if test="doctorName != null and doctorName != ''">
-				AND c.name LIKE  
-					<if test="dbName == 'oracle'">'%'||#{doctorName}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{doctorName}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{doctorName},'%')</if>
+			<if test="memberCard != null and memberCard != ''">
+				AND b.membercard LIKE  
+					<if test="dbName == 'oracle'">'%'||#{memberCard}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{memberCard}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{memberCard},'%')</if>
 			</if>
 			<if test="reservationTime != null and reservationTime != ''">
 				AND

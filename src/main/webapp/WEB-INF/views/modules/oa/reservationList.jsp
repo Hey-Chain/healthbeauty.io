@@ -25,11 +25,11 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>客户：</label>
-				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium"/>
+			<li><label>会员卡号：</label>
+				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li><label>医生：</label>
-				<form:input path="doctorName" htmlEscape="false" maxlength="64" class="input-medium"/>
+			<li><label>客户姓名：</label>
+				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li><label>预约时间：</label>
 				<input name="reservationTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
@@ -50,6 +50,7 @@
 				<th>预约时间</th>
 				<th>编号</th>
 				<th>客户</th>
+				<th>会员卡号</th>
 				<th>医生</th>
 				<th>预约项目</th>
 				<th>状态</th>
@@ -67,6 +68,9 @@
 				</td>
 				<td>
 					${reservation.customerName}
+				</td>
+				<td>
+					${reservation.memberCard}
 				</td>
 				<td>
 					${reservation.doctorName}

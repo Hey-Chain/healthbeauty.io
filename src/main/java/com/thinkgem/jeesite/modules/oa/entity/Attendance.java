@@ -20,6 +20,7 @@ public class Attendance extends DataEntity<Attendance> {
 	private static final long serialVersionUID = 1L;
 	private String customerId;		// 客户
 	private String customerName;	// 客户名称
+	private String memberCard;	//会员卡
 	private Date attendanceTime;		// 就诊时间
 	private String attendanceType;		// 就诊类型
 	private String reservationId;		// 预约编号
@@ -82,6 +83,14 @@ public class Attendance extends DataEntity<Attendance> {
 	}
 	public String getReservationNumber() {
 		return reservationNumber;
+	}
+
+	public String getMemberCard() {
+		return memberCard;
+	}
+
+	public void setMemberCard(String memberCard) {
+		this.memberCard = memberCard;
 	}
 
 	public void setReservationNumber(String reservationNumber) {

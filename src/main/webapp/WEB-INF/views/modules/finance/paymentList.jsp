@@ -25,6 +25,9 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>会员卡号：</label>
+				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-medium"/>
+			</li>
 			<li><label>付款时间：</label>
 				<input name="paymentTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${payment.paymentTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -41,6 +44,8 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>客户</th>
+				<th>会员卡号</th>
 				<th>付款时间</th>
 				<th>付款方式</th>
 				<th>应款金额</th>
@@ -53,6 +58,12 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="payment">
 			<tr>
+				<td>
+					${payment.customerName}
+				</td>
+				<td>
+					${payment.memberCard}
+				</td>
 				<td><a href="${ctx}/finance/payment/form?id=${payment.id}">
 					<fmt:formatDate value="${payment.paymentTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</a></td>

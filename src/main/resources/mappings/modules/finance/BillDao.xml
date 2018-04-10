@@ -7,6 +7,7 @@
 		a.bill_number AS "billNumber",
 		a.customer_id AS "customerId",
 		b.customer_name AS "customerName",
+		b.membercard AS "memberCard",
 		a.bill_time AS "billTime",
 		a.attendance_id AS "attendanceId",
 		a.is_paid AS "isPaid",
@@ -37,6 +38,12 @@
 		<include refid="billJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="memberCard != null and memberCard != ''">
+				AND b.membercard LIKE  
+					<if test="dbName == 'oracle'">'%'||#{memberCard}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{memberCard}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{memberCard},'%')</if>
+			</if>
 			<if test="customerName != null and customerName != ''">
 				AND b.customer_name LIKE 
 					<if test="dbName == 'oracle'">'%'||#{customerName}||'%'</if>

@@ -20,6 +20,7 @@ public class Reservation extends DataEntity<Reservation> {
 	private String reservationNumber;//预约编码
 	private String customerId;		// 客户
 	private String customerName;	// 客户名称
+	private String memberCard;	//会员卡
 	private String doctorId;		// 医生
 	private String doctorName;	// 客户名称
 	private Date reservationTime;		// 预约时间
@@ -41,6 +42,14 @@ public class Reservation extends DataEntity<Reservation> {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public String getMemberCard() {
+		return memberCard;
+	}
+
+	public void setMemberCard(String memberCard) {
+		this.memberCard = memberCard;
 	}
 
 	public String getDoctorName() {

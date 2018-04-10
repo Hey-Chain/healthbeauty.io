@@ -22,7 +22,8 @@ public class Bill extends DataEntity<Bill> {
 	private static final long serialVersionUID = 1L;
 	private String billNumber;	//收费单编码
 	private String customerId;		// 客户
-	private String customerName;	// 客户
+	private String customerName;	// 客户名称
+	private String memberCard;	//会员卡号
 	private Date billTime;		// 开单时间
 	private String attendanceId;		// 就诊单
 	private String isPaid;		// 是否付款
@@ -52,7 +53,23 @@ public class Bill extends DataEntity<Bill> {
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 	
+	public String getMemberCard() {
+		return memberCard;
+	}
+
+	public void setMemberCard(String memberCard) {
+		this.memberCard = memberCard;
+	}
+
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@NotNull(message="开单时间不能为空")
 	public Date getBillTime() {
@@ -87,13 +104,5 @@ public class Bill extends DataEntity<Bill> {
 
 	public void setBillitemList(List<Billitem> billitemList) {
 		this.billitemList = billitemList;
-	}
-
-	public String getCustomerName() {
-		return customerName;
-	}
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
 	}
 }

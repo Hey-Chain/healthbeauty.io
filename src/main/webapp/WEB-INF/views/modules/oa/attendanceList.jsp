@@ -18,14 +18,17 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/oa/attendance/">就诊信息列表</a></li>
-		<%-- <shiro:hasPermission name="oa:attendance:edit"><li><a href="${ctx}/oa/attendance/form">就诊信息添加</a></li></shiro:hasPermission> --%>
+		<li class="active"><a href="${ctx}/oa/attendance/">就诊列表</a></li>
+		<shiro:hasPermission name="oa:attendance:edit"><li><a href="${ctx}/oa/attendance/form">就诊登记</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="attendance" action="${ctx}/oa/attendance/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>客户：</label>
+			<li><label>会员卡号：</label>
+				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-medium"/>
+			</li>
+			<li><label>客户姓名：</label>
 				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li><label>就诊时间：</label>
@@ -39,9 +42,6 @@
 					<form:options items="${fns:getDictList('attendance_status')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</li>
-			<li><label>预约编号：</label>
-				<form:input path="reservationNumber" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -50,31 +50,35 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>客户姓名</th>
+				<th>会员卡</th>
 				<th>就诊时间</th>
-				<th>客户</th>
+				<th>预约编号</th>
 				<th>就诊类型</th>
 				<th>状态</th>
-				<th>预约编号</th>
 				<shiro:hasPermission name="oa:attendance:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="attendance">
 			<tr>
+				<td><a href="${ctx}/oa/attendance/form?id=${attendance.id}">
+					${attendance.customerName}</a>
+				</td>
+				<td>
+					${attendance.memberCard}
+				</td>
 				<td>
 					<fmt:formatDate value="${attendance.attendanceTime}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
-				<td><a href="${ctx}/oa/attendance/form?id=${attendance.id}">
-					${attendance.customerName}
-				</a></td>
 				<td>
 					${fns:getDictLabel(attendance.attendanceType, 'attendance_type', '')}
 				</td>
 				<td>
-					${fns:getDictLabel(attendance.status, 'attendance_status', '')}
+					${attendance.reservationNumber}
 				</td>
 				<td>
-					${attendance.reservationNumber}
+					${fns:getDictLabel(attendance.status, 'attendance_status', '')}
 				</td>
 				<shiro:hasPermission name="oa:attendance:edit"><td>
     				<a href="${ctx}/oa/attendance/form?id=${attendance.id}">修改</a> |

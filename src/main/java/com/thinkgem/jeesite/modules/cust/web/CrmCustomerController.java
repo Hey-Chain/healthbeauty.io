@@ -143,6 +143,7 @@ public class CrmCustomerController extends BaseController {
 	public CrmCustomer getByMemberCard(String memberCard) {
 		CrmCustomer searchCustomer = new CrmCustomer();
 		searchCustomer.setMembercard(memberCard);
-		return crmCustomerService.get(searchCustomer);
+		List<CrmCustomer> customerResult = crmCustomerService.findList(searchCustomer);
+		return customerResult == null ? new CrmCustomer(): customerResult.get(0);
 	}
 }

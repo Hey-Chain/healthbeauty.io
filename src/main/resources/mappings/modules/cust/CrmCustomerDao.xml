@@ -36,13 +36,7 @@
 			<include refid="crmCustomerColumns"/>
 		FROM crm_customer a
 		<include refid="crmCustomerJoins"/>
-		WHERE 1=1 
-		<if test="id != null and id != ''">
-			AND a.id = #{id} 
-		</if>
-		<if test="membercard != null and membercard != ''">
-			AND a.membercard = #{membercard} 
-		</if>
+		WHERE a.id = #{id} 
 	</select>
 	
 	<select id="findList" resultType="CrmCustomer">

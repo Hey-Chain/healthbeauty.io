@@ -36,12 +36,16 @@
 					loading('正在获取客户，请稍等...');
 					
 					var inputMemberCard = $('#memberCard').val();
-					$.get('${ctx}/cust/crmCustomer/getByMemberCard' ,{memberCard: inputMemberCard}, function(data) {
+					$.getJSON('${ctx}/cust/crmCustomer/byMemberCard/'+inputMemberCard , function(data) {
 						top.$.jBox.closeTip();
-						if(data != null){
-							$('#customerId').val(data.customerId);
+						$('#customerId').val('');
+						$('#customerName').val('');
+						
+						if(!data.isNewRecord){
+							$('#customerId').val(data.id);
 							$('#customerName').val(data.customerName);
 						}else{
+							$('#memberCard').val('');
 							$("#messageBox").text("没有找到该卡号信息，稍后先确认会员信息！");
 						}
 					}).fail(function() {
@@ -51,6 +55,10 @@
 			   }
 			})
 		});
+		
+		function saveFrom(){
+			$('#inputForm').submit();
+		}
 	</script>
 </head>
 <body>
@@ -65,6 +73,7 @@
 			<label class="control-label">会员卡号：</label>
 			<div class="controls">
 				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-xlarge " />
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
@@ -121,7 +130,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="oa:attendance:edit"><input id="btnSubmit" class="btn btn-primary" type="button" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<shiro:hasPermission name="oa:attendance:edit"><input id="btnSubmit" class="btn btn-primary" type="button" onclick="saveFrom()" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

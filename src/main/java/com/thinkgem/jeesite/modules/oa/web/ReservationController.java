@@ -83,8 +83,8 @@ public class ReservationController extends BaseController {
 		List<OaProject> projectList = projectService.findList(new OaProject());
 		model.addAttribute("projectList", projectList);
 		
-		List<CrmCustomer> customerList = customerService.findList(new CrmCustomer());
-		model.addAttribute("customerList", customerList);
+		//List<CrmCustomer> customerList = customerService.findList(new CrmCustomer());
+		//model.addAttribute("customerList", customerList);
 
 		List<User> doctors = systemService.findUserByRoleId(Role.DOCTOR_ROLE_ID);
 		model.addAttribute("doctorList", doctors);

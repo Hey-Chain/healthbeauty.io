@@ -75,7 +75,7 @@
 					${bill.remarks}
 				</td>
 				<shiro:hasPermission name="finance:bill:edit"><td>
-					<a href="${ctx}/finance/payment/form?billId=${bill.id}">收费</a> | 
+					<a href="${ctx}/finance/payment/form?billId=${bill.id}">付款</a> | 
     				<a href="${ctx}/finance/bill/form?id=${bill.id}">修改</a> | 
 					<a href="${ctx}/finance/bill/delete?id=${bill.id}" onclick="return confirmx('确认要删除该收费单吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>

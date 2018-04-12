@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -139,11 +140,11 @@ public class CrmCustomerController extends BaseController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "getByMemberCard")
-	public CrmCustomer getByMemberCard(String memberCard) {
+	@RequestMapping(value = "byMemberCard/{memberCard}")
+	public CrmCustomer getByMemberCard(@PathVariable("memberCard") String memberCard) {
 		CrmCustomer searchCustomer = new CrmCustomer();
 		searchCustomer.setMembercard(memberCard);
 		List<CrmCustomer> customerResult = crmCustomerService.findList(searchCustomer);
-		return customerResult == null ? new CrmCustomer(): customerResult.get(0);
+		return customerResult.size() == 0 ? new CrmCustomer(): customerResult.get(0);
 	}
 }

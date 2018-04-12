@@ -106,7 +106,7 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#billNumber,
+			#{billNumber},
 			#{customerId},
 			#{billTime},
 			#{attendanceId},

@@ -23,6 +23,10 @@
 				}
 			});
 		});
+
+		function saveFrom(){
+			$('#inputForm').submit();
+		}
 	</script>
 </head>
 <body>
@@ -37,6 +41,7 @@
 			<label class="control-label">会员卡号：</label>
 			<div class="controls">
 				<form:input path="membercard" htmlEscape="false" maxlength="32" class="input-xlarge "/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
@@ -150,7 +155,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="cust:crmCustomer:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<shiro:hasPermission name="cust:crmCustomer:edit"><input id="btnSubmit" class="btn btn-primary" type="button" onclick="saveFrom()" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

@@ -42,7 +42,7 @@ public class CrmCustomer extends DataEntity<CrmCustomer> {
 		super(id);
 	}
 
-	@Length(min=1, max=32, message="姓名长度必须介于 1 和 32 之间")
+	@Length(min=1, max=32, message="客户长度必须介于 1 和 32 之间")
 	public String getCustomerName() {
 		return customerName;
 	}

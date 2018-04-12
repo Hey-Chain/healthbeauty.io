@@ -5,6 +5,7 @@
 	<title>付款单管理</title>
 	<meta name="decorator" content="default"/>
 	<script src="${ctxStatic}/common/dateoperation.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/common/biz.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
@@ -26,6 +27,7 @@
 			
 			if(!getQueryString('id')){
 				$("#paymentTime").val(getCurrentDateTime(new Date()));
+				$("#billNumber").val(getBillNo());
 			}
 		});
 	</script>

@@ -34,7 +34,7 @@
 			<li><label>开单时间：</label>
 				<input name="billTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${bill.billTime}" pattern="yyyy-MM-dd"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>

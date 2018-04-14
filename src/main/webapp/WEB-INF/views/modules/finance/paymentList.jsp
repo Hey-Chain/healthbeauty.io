@@ -30,8 +30,8 @@
 			</li>
 			<li><label>付款时间：</label>
 				<input name="paymentTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${payment.paymentTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${payment.paymentTime}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
 			<li><label>付款方式：</label>
 				<form:input path="paymentType" htmlEscape="false" maxlength="64" class="input-medium"/>
@@ -87,7 +87,7 @@
 					${payment.remarks}
 				</td>
 				<shiro:hasPermission name="finance:payment:edit"><td>
-    				<a href="${ctx}/finance/payment/form?id=${payment.id}">修改</a>
+    				<a href="${ctx}/finance/payment/form?id=${payment.id}">修改</a> | 
 					<a href="${ctx}/finance/payment/delete?id=${payment.id}" onclick="return confirmx('确认要删除该付款单吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>

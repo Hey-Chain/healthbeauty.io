@@ -76,7 +76,7 @@
 		<div class="control-group">
 			<label class="control-label">联系地址：</label>
 			<div class="controls">
-				<form:textarea path="address" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+				<form:textarea path="address" htmlEscape="false" rows="2" maxlength="255" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

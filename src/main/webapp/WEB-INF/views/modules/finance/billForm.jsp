@@ -31,6 +31,7 @@
 				$('input[name=isPaid]').get(0).checked = true;
 				$("#billTime").val(getCurrentDateTime(new Date()));
 				$("#billNumber").val(getBillNo());
+				$('#btnPay').hide();
 			}			
 
 			$('#memberCard').keyup(function (event) { 
@@ -86,7 +87,7 @@
 			});
 			
 			if(!getQueryString('id')){				
-				changeProject(idx);	
+				changeProject(idx);
 			}
 		}
 		
@@ -126,6 +127,10 @@
 					}
 				}
 			}
+		}
+		
+		function doPay(){
+        	location = '${ctx}/finance/payment/form/?billId=' + getQueryString('id');
 		}
 
 		function saveFrom(){
@@ -260,6 +265,7 @@
 				</div>
 			</div>
 		<div class="form-actions">
+			<input id="btnPay" class="btn" type="button" value="付 款" onclick="doPay()"/>
 			<shiro:hasPermission name="finance:bill:edit"><input id="btnSubmit" class="btn btn-primary" type="button"  onclick="saveFrom()" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>

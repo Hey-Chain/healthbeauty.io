@@ -22,6 +22,7 @@ public class Payment extends DataEntity<Payment> {
 	private String customerName;//客户名改
 	private String memberCard;	//会员卡号
 	private Date paymentTime;		// 付款时间
+	private String paymentNumber;	//付款编码
 	private String paymentType;		// 付款方式
 	private Double payable;		// 应付金额
 	private Double amount;		// 付款金额
@@ -76,6 +77,14 @@ public class Payment extends DataEntity<Payment> {
 		this.paymentTime = paymentTime;
 	}
 	
+	public String getPaymentNumber() {
+		return paymentNumber;
+	}
+
+	public void setPaymentNumber(String paymentNumber) {
+		this.paymentNumber = paymentNumber;
+	}
+
 	@Length(min=0, max=64, message="付款方式长度必须介于 0 和 64 之间")
 	public String getPaymentType() {
 		return paymentType;

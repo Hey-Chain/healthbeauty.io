@@ -9,6 +9,7 @@
 		"billNumber",
 		c.customer_name AS "customerName",
 		c.membercard AS	"memberCard",
+		a.payment_number AS "paymentNumber",
 		a.payment_time AS "paymentTime",
 		a.payment_type AS
 		"paymentType",
@@ -51,7 +52,9 @@
 				<if test="dbName == 'mysql'">concat('%',#{memberCard},'%')</if>
 			</if>
 			<if test="paymentTime != null and paymentTime != ''">
-				AND a.payment_time = #{paymentTime}
+				AND
+				<if test="dbName == 'mssql'">datediff(day, a.payment_time, #{paymentTime})=0</if>
+				<if test="dbName == 'mysql'">to_days(payment_time)=to_days(#{paymentTime})</if>
 			</if>
 			<if test="paymentType != null and paymentType != ''">
 				AND a.payment_type = #{paymentType}
@@ -89,6 +92,7 @@
 		INSERT INTO f_payment(
 		id,
 		bill_id,
+		payment_number,
 		payment_time,
 		payment_type,
 		payable,
@@ -102,6 +106,7 @@
 		) VALUES (
 		#{id},
 		#{billId},
+		#{paymentNumber},
 		#{paymentTime},
 		#{paymentType},
 		#{payable},
@@ -118,6 +123,7 @@
 	<update id="update">
 		UPDATE f_payment SET
 		bill_id = #{billId},
+		payment_number = #{paymentNumber},
 		payment_time = #{paymentTime},
 		payment_type = #{paymentType},
 		payable = #{payable},

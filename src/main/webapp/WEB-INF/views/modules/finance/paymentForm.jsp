@@ -27,7 +27,7 @@
 			
 			if(!getQueryString('id')){
 				$("#paymentTime").val(getCurrentDateTime(new Date()));
-				$("#billNumber").val(getBillNo());
+				$("#paymentNumber").val(getBillNo());
 			}
 		});
 	</script>
@@ -40,6 +40,12 @@
 	<form:form id="inputForm" modelAttribute="payment" action="${ctx}/finance/payment/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
+		<div class="control-group">
+			<label class="control-label">付款单：</label>
+			<div class="controls">
+				<form:input path="paymentNumber" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">收费单：</label>
 			<div class="controls">

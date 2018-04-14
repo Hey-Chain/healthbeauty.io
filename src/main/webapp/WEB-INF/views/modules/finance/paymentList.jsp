@@ -46,6 +46,7 @@
 			<tr>
 				<th>客户</th>
 				<th>会员卡号</th>
+				<th>付款单号</th>
 				<th>付款时间</th>
 				<th>付款方式</th>
 				<th>应款金额</th>
@@ -65,8 +66,11 @@
 					${payment.memberCard}
 				</td>
 				<td><a href="${ctx}/finance/payment/form?id=${payment.id}">
+					${payment.paymentNumber}</a>
+				</td>
+				<td>
 					<fmt:formatDate value="${payment.paymentTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
+				</td>
 				<td>
 					${fns:getDictLabel(payment.paymentType, 'payment_type', '')}
 				</td>

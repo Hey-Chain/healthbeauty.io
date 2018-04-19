@@ -144,7 +144,7 @@
 		<li class="active"><a href="${ctx}/finance/bill/form?id=${bill.id}">收费单<shiro:hasPermission name="finance:bill:edit">${not empty bill.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="finance:bill:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="bill" action="${ctx}/finance/bill/save" method="post" class="form-horizontal">
-		<form:hidden path="id"/>
+<form:hidden path="id"/>
 		<form:hidden path="attendanceId"/>
 		<sys:message content="${message}"/>
 		<div class="control-group">
@@ -265,8 +265,10 @@
 				</div>
 			</div>
 		<div class="form-actions">
-			<input id="btnPay" class="btn" type="button" value="付 款" onclick="doPay()"/>
-			<shiro:hasPermission name="finance:bill:edit"><input id="btnSubmit" class="btn btn-primary" type="button"  onclick="saveFrom()" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<input id="btnPay" class="btn" type="button" style="display:${bill.isPaid eq '0'?'inline':'none'}" value="付 款" onclick="doPay()"/>
+			<shiro:hasPermission name="finance:bill:edit">
+				<input id="btnSubmit" class="btn btn-primary" type="button"  style="display:${bill.isPaid eq '0'?'inline':'none'}" onclick="saveFrom()" value="保 存"/>&nbsp;
+			</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

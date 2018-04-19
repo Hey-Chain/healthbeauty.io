@@ -5,11 +5,13 @@ package com.thinkgem.jeesite.modules.finance.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
+import com.thinkgem.jeesite.modules.finance.entity.Bill;
 import com.thinkgem.jeesite.modules.finance.entity.Payment;
 import com.thinkgem.jeesite.modules.finance.dao.PaymentDao;
 
@@ -22,6 +24,9 @@ import com.thinkgem.jeesite.modules.finance.dao.PaymentDao;
 @Transactional(readOnly = true)
 public class PaymentService extends CrudService<PaymentDao, Payment> {
 
+	@Autowired
+	private BillService billService;
+	
 	public Payment get(String id) {
 		return super.get(id);
 	}
@@ -36,6 +41,11 @@ public class PaymentService extends CrudService<PaymentDao, Payment> {
 	
 	@Transactional(readOnly = false)
 	public void save(Payment payment) {
+
+		Bill payBill = billService.get(payment.getBillId());
+		payBill.setIsPaid("1");
+		billService.save(payBill);
+
 		super.save(payment);
 	}
 	

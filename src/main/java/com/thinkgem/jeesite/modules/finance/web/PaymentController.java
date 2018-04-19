@@ -87,6 +87,7 @@ public class PaymentController extends BaseController {
 		if (!beanValidator(model, payment)){
 			return form(payment, model);
 		}
+
 		paymentService.save(payment);
 		addMessage(redirectAttributes, "保存付款单成功");
 		return "redirect:"+Global.getAdminPath()+"/finance/payment/?repage";

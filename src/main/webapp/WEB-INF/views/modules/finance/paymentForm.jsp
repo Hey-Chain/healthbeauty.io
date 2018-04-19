@@ -43,14 +43,14 @@
 		<div class="control-group">
 			<label class="control-label">付款单：</label>
 			<div class="controls">
-				<form:input path="paymentNumber" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+				<form:input path="paymentNumber" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge required"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">收费单：</label>
 			<div class="controls">
 				<form:hidden path="billId" />
-				<form:input path="billNumber" htmlEscape="false" maxlength="64" class="input-xlarge required"/>
+				<form:input path="billNumber" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge required"/>
 			</div>
 		</div>
 		<div class="control-group">

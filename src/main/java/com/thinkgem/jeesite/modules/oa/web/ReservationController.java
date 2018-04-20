@@ -77,7 +77,9 @@ public class ReservationController extends BaseController {
 	public String form(Reservation reservation, Model model) {
 
 		if(reservation.getIsNewRecord() && StringUtils.isNotBlank(reservation.getCustomerId())) {
-			reservation.setCustomerName(customerService.get(reservation.getCustomerId()).getCustomerName());
+			CrmCustomer cust = customerService.get(reservation.getCustomerId());
+			reservation.setCustomerName(cust.getCustomerName());
+			reservation.setMemberCard(cust.getMembercard());
 		}
 		
 		List<OaProject> projectList = projectService.findList(new OaProject());

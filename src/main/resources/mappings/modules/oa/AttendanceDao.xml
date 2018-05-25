@@ -6,7 +6,8 @@
 		a.id AS "id",
 		a.customer_id AS "customerId",
 		b.customer_name AS "customerName",
-		b.membercard AS "memberCard",
+		b.member_card_id AS "memberCardId",
+		b.member_card_number AS "memberCard",
 		a.attendance_time AS "attendanceTime",
 		a.attendance_type AS "attendanceType",
 		a.reservation_id AS "reservationId",
@@ -64,7 +65,7 @@
 				AND a.status = #{status}
 			</if>
 			<if test="memberCard != null and memberCard != ''">
-				AND b.membercard = #{memberCard}
+				AND b.member_card_number = #{memberCard}
 			</if>
 		</where>
 		<choose>

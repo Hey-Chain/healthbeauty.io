@@ -21,8 +21,8 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.modules.cust.entity.CrmCustomer;
-import com.thinkgem.jeesite.modules.cust.service.CrmCustomerService;
+import com.thinkgem.jeesite.modules.crm.entity.CrmCustomer;
+import com.thinkgem.jeesite.modules.crm.service.CrmCustomerService;
 import com.thinkgem.jeesite.modules.oa.entity.OaProject;
 import com.thinkgem.jeesite.modules.oa.entity.Reservation;
 import com.thinkgem.jeesite.modules.oa.service.OaProjectService;
@@ -79,7 +79,7 @@ public class ReservationController extends BaseController {
 		if(reservation.getIsNewRecord() && StringUtils.isNotBlank(reservation.getCustomerId())) {
 			CrmCustomer cust = customerService.get(reservation.getCustomerId());
 			reservation.setCustomerName(cust.getCustomerName());
-			reservation.setMemberCard(cust.getMembercard());
+			reservation.setMemberCard(cust.getMemberCardNumber());
 		}
 		
 		List<OaProject> projectList = projectService.findList(new OaProject());

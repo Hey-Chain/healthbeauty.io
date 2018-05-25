@@ -22,7 +22,7 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
-import com.thinkgem.jeesite.modules.cust.service.CrmCustomerService;
+import com.thinkgem.jeesite.modules.crm.service.CrmCustomerService;
 import com.thinkgem.jeesite.modules.oa.entity.Attendance;
 import com.thinkgem.jeesite.modules.oa.entity.Reservation;
 import com.thinkgem.jeesite.modules.oa.service.AttendanceService;

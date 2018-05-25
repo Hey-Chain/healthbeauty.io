@@ -41,7 +41,7 @@
 					loading('正在获取客户，请稍等...');
 					
 					var inputMemberCard = $('#memberCard').val();
-					$.getJSON('${ctx}/cust/crmCustomer/byMemberCard/'+inputMemberCard , function(data) {
+					$.getJSON('${ctx}/crm/crmCustomer/byMemberCard/'+inputMemberCard , function(data) {
 						top.$.jBox.closeTip();
 						$('#customerId').val('');
 						$('#customerName').val('');

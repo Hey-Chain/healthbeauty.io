@@ -14,26 +14,28 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
  * 收费管理Entity
+ * 
  * @author HEY-Chain
  * @version 2018-03-31
  */
 public class Bill extends DataEntity<Bill> {
-	
+
 	private static final long serialVersionUID = 1L;
-	private String billNumber;	//收费单编码
-	private String customerId;		// 客户
-	private String customerName;	// 客户名称
-	private String memberCard;	//会员卡号
-	private Date billTime;		// 开单时间
-	private String attendanceId;		// 就诊单
-	private String isPaid;		// 是否付款
-	private List<Billitem> billitemList = Lists.newArrayList();		// 子表列表
-	
+	private String billNumber; // 收费单编码
+	private String customerId; // 客户
+	private String customerName; // 客户名称
+	private String memberCardId; // 会员卡Id
+	private String memberCard; // 会员卡号
+	private Date billTime; // 开单时间
+	private String attendanceId; // 就诊单
+	private String isPaid; // 是否付款
+	private List<Billitem> billitemList = Lists.newArrayList(); // 子表列表
+
 	public Bill() {
 		super();
 	}
 
-	public Bill(String id){
+	public Bill(String id) {
 		super(id);
 	}
 
@@ -45,7 +47,7 @@ public class Bill extends DataEntity<Bill> {
 		this.billNumber = billNumber;
 	}
 
-	@Length(min=1, max=64, message="客户长度必须介于 1 和 64 之间")
+	@Length(min = 1, max = 64, message = "客户长度必须介于 1 和 64 之间")
 	public String getCustomerId() {
 		return customerId;
 	}
@@ -61,7 +63,15 @@ public class Bill extends DataEntity<Bill> {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	
+
+	public String getMemberCardId() {
+		return memberCardId;
+	}
+
+	public void setMemberCardId(String memberCardId) {
+		this.memberCardId = memberCardId;
+	}
+
 	public String getMemberCard() {
 		return memberCard;
 	}
@@ -71,7 +81,7 @@ public class Bill extends DataEntity<Bill> {
 	}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@NotNull(message="开单时间不能为空")
+	@NotNull(message = "开单时间不能为空")
 	public Date getBillTime() {
 		return billTime;
 	}
@@ -79,8 +89,8 @@ public class Bill extends DataEntity<Bill> {
 	public void setBillTime(Date billTime) {
 		this.billTime = billTime;
 	}
-	
-	@Length(min=0, max=64, message="就诊单长度必须介于 0 和 64 之间")
+
+	@Length(min = 0, max = 64, message = "就诊单长度必须介于 0 和 64 之间")
 	public String getAttendanceId() {
 		return attendanceId;
 	}
@@ -88,8 +98,8 @@ public class Bill extends DataEntity<Bill> {
 	public void setAttendanceId(String attendanceId) {
 		this.attendanceId = attendanceId;
 	}
-	
-	@Length(min=1, max=1, message="是否付款长度必须介于 1 和 1 之间")
+
+	@Length(min = 1, max = 1, message = "是否付款长度必须介于 1 和 1 之间")
 	public String getIsPaid() {
 		return isPaid;
 	}
@@ -97,7 +107,7 @@ public class Bill extends DataEntity<Bill> {
 	public void setIsPaid(String isPaid) {
 		this.isPaid = isPaid;
 	}
-	
+
 	public List<Billitem> getBillitemList() {
 		return billitemList;
 	}

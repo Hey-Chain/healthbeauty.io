@@ -7,7 +7,7 @@
 		a.reservation_number AS "reservationNumber",
 		a.customer_id AS "customerId",
 		b.customer_name AS "customerName",
-		b.membercard AS "memberCard",
+		b.member_card_Number AS "memberCard",
 		a.doctor_id AS "doctorId",
 		c.name AS "doctorName",
 		a.reservation_time AS "reservationTime",

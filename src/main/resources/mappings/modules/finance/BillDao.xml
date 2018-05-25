@@ -7,7 +7,8 @@
 		a.bill_number AS "billNumber",
 		a.customer_id AS "customerId",
 		b.customer_name AS "customerName",
-		b.membercard AS "memberCard",
+		b.member_card_id AS "memberCardId",
+		b.member_card_number AS "memberCard",
 		a.bill_time AS "billTime",
 		a.attendance_id AS "attendanceId",
 		a.is_paid AS "isPaid",
@@ -39,7 +40,7 @@
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="memberCard != null and memberCard != ''">
-				AND b.membercard LIKE  
+				AND b.member_card_number LIKE  
 					<if test="dbName == 'oracle'">'%'||#{memberCard}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{memberCard}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{memberCard},'%')</if>

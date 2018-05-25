@@ -20,6 +20,7 @@ public class Payment extends DataEntity<Payment> {
 	private String billId;		// 收费单
 	private String billNumber;	//收费单编码
 	private String customerName;//客户名改
+	private String memberCardId;	//会员卡Id
 	private String memberCard;	//会员卡号
 	private Date paymentTime;		// 付款时间
 	private String paymentNumber;	//付款编码
@@ -60,6 +61,14 @@ public class Payment extends DataEntity<Payment> {
 		this.customerName = customerName;
 	}
 
+	public String getMemberCardId() {
+		return memberCardId;
+	}
+
+	public void setMemberCardId(String memberCardId) {
+		this.memberCardId = memberCardId;
+	}
+	
 	public String getMemberCard() {
 		return memberCard;
 	}

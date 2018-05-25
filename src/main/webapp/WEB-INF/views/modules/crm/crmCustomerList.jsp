@@ -18,15 +18,15 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/cust/crmCustomer/">客户信息列表</a></li>
-		<shiro:hasPermission name="cust:crmCustomer:edit"><li><a href="${ctx}/cust/crmCustomer/form">客户信息添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/crm/crmCustomer/">客户信息列表</a></li>
+		<shiro:hasPermission name="cust:crmCustomer:edit"><li><a href="${ctx}/crm/crmCustomer/form">客户信息添加</a></li></shiro:hasPermission>
 	</ul>
-	<form:form id="searchForm" modelAttribute="crmCustomer" action="${ctx}/cust/crmCustomer/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="crmCustomer" action="${ctx}/crm/crmCustomer/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>会员卡号：</label>
-				<form:input path="membercard" htmlEscape="false" maxlength="32" class="input-medium"/>
+				<form:input path="memberCardNumber" htmlEscape="false" maxlength="32" class="input-medium"/>
 			</li>
 			<li><label>姓名：</label>
 				<form:input path="customerName" htmlEscape="false" maxlength="32" class="input-medium"/>
@@ -62,9 +62,9 @@
 		<c:forEach items="${page.list}" var="crmCustomer">
 			<tr>
 				<td>
-					${crmCustomer.membercard}
+					${crmCustomer.memberCardNumber}
 				</td>
-				<td><a href="${ctx}/cust/crmCustomer/form?id=${crmCustomer.id}">
+				<td><a href="${ctx}/crm/crmCustomer/form?id=${crmCustomer.id}">
 					${crmCustomer.customerName}
 				</a></td>
 				<td>
@@ -83,10 +83,10 @@
 					${crmCustomer.remarks}
 				</td>
 				<shiro:hasPermission name="cust:crmCustomer:edit"><td>
-    				<a href="${ctx}/cust/crmCustomer/form?id=${crmCustomer.id}">修改</a> | 
+    				<a href="${ctx}/crm/crmCustomer/form?id=${crmCustomer.id}">修改</a> | 
     				<a href="${ctx}/oa/reservation/form?customerId=${crmCustomer.id}">预约</a> | 
     				<a href="${ctx}/oa/attendance/form?customerId=${crmCustomer.id}">就诊</a> | 
-    				<a href="${ctx}/cust/crmCustomer/delete?id=${crmCustomer.id}" onclick="return confirmx('确认要删除该客户信息吗？', this.href)">删除</a>
+    				<a href="${ctx}/crm/crmCustomer/delete?id=${crmCustomer.id}" onclick="return confirmx('确认要删除该客户信息吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

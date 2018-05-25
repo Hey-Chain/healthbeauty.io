@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2017-2018 <a href="https://github.com/Hey-Chain">Hey-Chain</a> All rights reserved.
  */
-package com.thinkgem.jeesite.modules.cust.entity;
+package com.thinkgem.jeesite.modules.crm.entity;
 
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
@@ -26,7 +26,9 @@ public class CrmCustomer extends DataEntity<CrmCustomer> {
 	private String address;		// 联系地址
 	private String wechat;		// 微信号
 	private Date birthday;		// 出生日期
-	private String membercard;		// 会员卡号
+	private String memberCardId;		// 会员卡号
+	private String memberCardNumber;		// 会员卡号
+
 	private String introducer;		// 介绍人
 	private String email;		// 邮箱
 	private String qq;		// qq号码
@@ -122,16 +124,23 @@ public class CrmCustomer extends DataEntity<CrmCustomer> {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	
-	@Length(min=0, max=32, message="会员卡号长度必须介于 0 和 32 之间")
-	public String getMembercard() {
-		return membercard;
+		
+	public String getMemberCardId() {
+		return memberCardId;
 	}
 
-	public void setMembercard(String membercard) {
-		this.membercard = membercard;
+	public void setMemberCardId(String memberCardId) {
+		this.memberCardId = memberCardId;
 	}
-	
+
+	public String getMemberCardNumber() {
+		return memberCardNumber;
+	}
+
+	public void setMemberCardNumber(String memberCardNumber) {
+		this.memberCardNumber = memberCardNumber;
+	}
+
 	@Length(min=0, max=32, message="介绍人长度必须介于 0 和 32 之间")
 	public String getIntroducer() {
 		return introducer;

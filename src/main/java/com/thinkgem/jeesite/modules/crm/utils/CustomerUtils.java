@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2017-2018 <a href="https://github.com/Hey-Chain">Hey-Chain</a> All rights reserved.
  */
-package com.thinkgem.jeesite.modules.cust.utils;
+package com.thinkgem.jeesite.modules.crm.utils;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.apache.shiro.subject.Subject;
 
 import com.thinkgem.jeesite.common.utils.CacheUtils;
 import com.thinkgem.jeesite.common.utils.SpringContextHolder;
-import com.thinkgem.jeesite.modules.cust.dao.CrmCustomerDao;
-import com.thinkgem.jeesite.modules.cust.entity.CrmCustomer;
+import com.thinkgem.jeesite.modules.crm.dao.CrmCustomerDao;
+import com.thinkgem.jeesite.modules.crm.entity.CrmCustomer;
 
 /**
  * 就诊管理Service

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.cust.dao.CrmCustomerDao">
+<mapper namespace="com.thinkgem.jeesite.modules.crm.dao.CrmCustomerDao">
     
 	<sql id="crmCustomerColumns">
 		a.id AS "id",
@@ -13,7 +13,8 @@
 		a.address AS "address",
 		a.wechat AS "wechat",
 		a.birthday AS "birthday",
-		a.membercard AS "membercard",
+		a.member_card_Id AS "memberCardId",
+		a.member_card_Number AS "memberCardNumber",
 		a.introducer AS "introducer",
 		a.email AS "email",
 		a.qq AS "qq",
@@ -58,8 +59,8 @@
 			<if test="sex != null and sex != ''">
 				AND a.sex = #{sex}
 			</if>
-			<if test="membercard != null and membercard != ''">
-				AND a.membercard = #{membercard}
+			<if test="memberCardNumber != null and memberCardNumber != ''">
+				AND a.member_card_Number = #{memberCardNumber}
 			</if>
 			<if test="customerNo != null and customerNo != ''">
 				AND a.customer_no = #{customerNo}
@@ -105,7 +106,8 @@
 			address,
 			wechat,
 			birthday,
-			membercard,
+			member_card_Id,
+			member_card_Number,
 			introducer,
 			email,
 			qq,
@@ -129,7 +131,8 @@
 			#{address},
 			#{wechat},
 			#{birthday},
-			#{membercard},
+			#{memberCardId},
+			#{memberCardNumber},
 			#{introducer},
 			#{email},
 			#{qq},
@@ -156,7 +159,8 @@
 			address = #{address},
 			wechat = #{wechat},
 			birthday = #{birthday},
-			membercard = #{membercard},
+			member_card_Id = #{memberCardId},
+			member_card_Number = #{memberCardNumber},
 			introducer = #{introducer},
 			email = #{email},
 			qq = #{qq},

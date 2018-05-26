@@ -105,7 +105,7 @@ public class CrmCustomerController extends BaseController {
 	@RequestMapping(value = "linkMemberCard")
 	public String linkMemberCard(String openCustomerId, String openMemberCardId, RedirectAttributes redirectAttributes) {
 		CrmMemberCard memberCard = memberCardService.get(openMemberCardId);
-		if(memberCard.getUseFlag() == "1") {
+		if("1".equals(memberCard.getUseFlag())) {
 			addMessage(redirectAttributes, "改开号已被占用，请更换卡号！");
 		}
 		else {

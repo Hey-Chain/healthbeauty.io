@@ -219,6 +219,7 @@
 							</td>
 							<td>
 		<select id="billitemList{{idx}}_projectId" name="billitemList[{{idx}}].projectId" rowIdx={{idx}} class="input-small" onchange="changeProject({{idx}})">
+			<option value='-1'></option>
 			<c:forEach items="${projectList}" var="dict">
 				<option value="${dict.id}">${dict.projectName}</option>
 			</c:forEach>
@@ -266,9 +267,7 @@
 			</div>
 		<div class="form-actions">
 			<input id="btnPay" class="btn" type="button" style="display:${bill.isPaid eq '0'?'inline':'none'}" value="付 款" onclick="doPay()"/>
-			<shiro:hasPermission name="finance:bill:edit">
-				<input id="btnSubmit" class="btn btn-primary" type="button"  style="display:${bill.isPaid eq '0'?'inline':'none'}" onclick="saveFrom()" value="保 存"/>&nbsp;
-			</shiro:hasPermission>
+			<input id="btnSubmit" class="btn btn-primary" type="button"  style="display:${bill.isPaid eq '1'?'none':'inline'}" onclick="saveFrom()" value="保 存"/>&nbsp;
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

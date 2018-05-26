@@ -76,7 +76,7 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group"> 	
 			<label class="control-label">客户：</label>
 			<div class="controls">
 				<form:hidden path="customerId" />
@@ -124,7 +124,7 @@
 		<div class="control-group">
 			<label class="control-label">状态：</label>
 			<div class="controls">
-				<form:select path="status" class="input-mini" disabled="true">
+				<form:select path="status" class="input-mini">
 					<form:options items="${fns:getDictList('attendance_status')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</div>

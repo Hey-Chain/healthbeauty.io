@@ -77,12 +77,11 @@ public class BillController extends BaseController {
 	public String form(Bill bill, Model model) {
 		if(bill.getIsNewRecord() && StringUtils.isNotBlank(bill.getCustomerId())) {
 			CrmCustomer customer = customerService.get(bill.getCustomerId());
-			
+			bill.setCustomerId(customer.getId());
 			bill.setCustomerName(customer.getCustomerName());
+			bill.setMemberCardId(customer.getMemberCardId());
+			bill.setMemberCard(customer.getMemberCardNumber());
 		}
-		
-		//List<CrmCustomer> customerList = customerService.findList(new CrmCustomer());
-		//model.addAttribute("customerList", customerList);
 		
 		List<User> doctors = systemService.findUserByRoleId(Role.DOCTOR_ROLE_ID);
 		model.addAttribute("doctorList", doctors);

@@ -22,11 +22,10 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.crm.entity.CrmCustomer;
 import com.thinkgem.jeesite.modules.crm.service.CrmCustomerService;
 import com.thinkgem.jeesite.modules.oa.entity.Attendance;
-import com.thinkgem.jeesite.modules.oa.entity.Reservation;
 import com.thinkgem.jeesite.modules.oa.service.AttendanceService;
-import com.thinkgem.jeesite.modules.oa.service.ReservationService;
 import com.thinkgem.jeesite.modules.sys.entity.Role;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.service.SystemService;
@@ -46,9 +45,6 @@ public class AttendanceController extends BaseController {
 	@Autowired
 	private SystemService systemService;
 	
-	@Autowired
-	private ReservationService reservationService;
-
 	@Autowired
 	private CrmCustomerService customerService;
 	
@@ -77,7 +73,11 @@ public class AttendanceController extends BaseController {
 	public String form(Attendance attendance, Model model) {
 		
 		if(attendance.getIsNewRecord() && StringUtils.isNotBlank(attendance.getCustomerId())) {
-			attendance.setCustomerName(customerService.get(attendance.getCustomerId()).getCustomerName());
+			CrmCustomer cust = customerService.get(attendance.getCustomerId());
+			attendance.setCustomerName(cust.getCustomerName());
+			attendance.setCustomerId(cust.getId());
+			attendance.setMemberCardId(cust.getMemberCardId());
+			attendance.setMemberCard(cust.getMemberCardNumber());
 		}
 		
 		List<User> doctors = systemService.findUserByRoleId(Role.COUNSELOR_ROLE_ID);
@@ -96,12 +96,6 @@ public class AttendanceController extends BaseController {
 			return form(attendance, model);
 		}
 
-		if(attendance.getIsNewRecord() && StringUtils.isNotBlank(attendance.getReservationId())) {
-			Reservation reservation = reservationService.get(attendance.getReservationId());
-			reservation.setStatus("1");
-			reservationService.save(reservation);
-		}
-		
 		attendanceService.save(attendance);
 		
 		addMessage(redirectAttributes, "保存就诊信息成功");

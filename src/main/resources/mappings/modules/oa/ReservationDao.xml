@@ -56,7 +56,7 @@
 				AND a.doctor_id = #{doctorId}
 			</if>
 			<if test="memberCard != null and memberCard != ''">
-				AND b.membercard LIKE  
+				AND b.member_card_number LIKE  
 					<if test="dbName == 'oracle'">'%'||#{memberCard}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{memberCard}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{memberCard},'%')</if>

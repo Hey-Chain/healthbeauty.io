@@ -70,7 +70,8 @@
 				var ctrlName = $(this).attr('name');
 				if(ctrlName == 'billitemList['+rowIdx+'].projectId'){
 					var rowData = billItemListData[rowIdx];
-					$(this).val(rowData.projectId);	
+					if (rowData)
+						$(this).val(rowData.projectId);	
 				}
 				else if(ctrlName == 'billitemList['+rowIdx+'].doctorId'){
 					var rowData = billItemListData[rowIdx];

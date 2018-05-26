@@ -72,10 +72,10 @@
 					<fmt:formatDate value="${attendance.attendanceTime}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
 				<td>
-					${fns:getDictLabel(attendance.attendanceType, 'attendance_type', '')}
+					${attendance.reservationNumber}
 				</td>
 				<td>
-					${attendance.reservationNumber}
+					${fns:getDictLabel(attendance.attendanceType, 'attendance_type', '')}
 				</td>
 				<td>
 					${fns:getDictLabel(attendance.status, 'attendance_status', '')}

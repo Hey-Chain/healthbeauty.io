@@ -27,7 +27,11 @@ public class CrmBalanceInOut extends DataEntity<CrmBalanceInOut> {
 	public Integer getOperateType() {
 		return operateType;
 	}
-
+	
+	/**
+	 * 0:减少,1:增加
+	 * @return 操作类型
+	 */
 	public void setOperatetType(Integer operateType) {
 		this.operateType = operateType;
 	}

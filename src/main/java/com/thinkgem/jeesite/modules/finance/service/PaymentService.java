@@ -13,6 +13,8 @@ import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.finance.entity.Bill;
 import com.thinkgem.jeesite.modules.finance.entity.Payment;
+import com.thinkgem.jeesite.modules.crm.entity.CrmBalanceInOut;
+import com.thinkgem.jeesite.modules.crm.service.CrmBalanceInOutService;
 import com.thinkgem.jeesite.modules.finance.dao.PaymentDao;
 
 /**
@@ -26,6 +28,9 @@ public class PaymentService extends CrudService<PaymentDao, Payment> {
 
 	@Autowired
 	private BillService billService;
+
+	@Autowired
+	private CrmBalanceInOutService balanceInOutService;
 	
 	public Payment get(String id) {
 		return super.get(id);
@@ -46,6 +51,12 @@ public class PaymentService extends CrudService<PaymentDao, Payment> {
 		payBill.setIsPaid("1");
 		billService.save(payBill);
 
+		CrmBalanceInOut outModel = new CrmBalanceInOut();
+		outModel.setChangeAmount(payment.getAmount());
+		outModel.setMemberCardId(payment.getMemberCardId());
+		outModel.setOperatetType(0);
+		balanceInOutService.save(outModel);
+		
 		super.save(payment);
 	}
 	

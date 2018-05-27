@@ -21,6 +21,8 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.crm.entity.CrmCustomer;
+import com.thinkgem.jeesite.modules.crm.service.CrmCustomerService;
 import com.thinkgem.jeesite.modules.finance.entity.Bill;
 import com.thinkgem.jeesite.modules.finance.entity.Billitem;
 import com.thinkgem.jeesite.modules.finance.entity.Payment;
@@ -41,6 +43,9 @@ public class PaymentController extends BaseController {
 	
 	@Autowired
 	private BillService billService;
+	
+	@Autowired
+	private CrmCustomerService customerService;
 		
 	@ModelAttribute
 	public Payment get(@RequestParam(required=false) String id) {
@@ -62,18 +67,30 @@ public class PaymentController extends BaseController {
 		return "modules/finance/paymentList";
 	}
 
+	/**
+	 * TODO: 给InOut表添加模块，用于标记什么业务导致的余额变化
+	 * @param payment
+	 * @param model
+	 * @return
+	 */
 	@RequiresPermissions("finance:payment:view")
 	@RequestMapping(value = "form")
 	public String form(Payment payment, Model model) {
 		if(payment.getIsNewRecord() && StringUtils.isNotBlank(payment.getBillId())) {
 			Bill bill = billService.get(payment.getBillId());
-			List<Billitem> itemList = bill.getBillitemList();
+			payment.setBillId(bill.getId());
+			payment.setBillNumber(bill.getBillNumber());
 			
+			CrmCustomer cust = customerService.get(bill.getCustomerId());
+			payment.setCustomerName(cust.getCustomerName());
+			payment.setMemberCardId(cust.getMemberCardId());
+			payment.setMemberCard(cust.getMemberCardNumber());
+
+			List<Billitem> itemList = bill.getBillitemList();			
 			Double payable = 0.0;
 			for (Billitem billitem : itemList) {
 				payable += billitem.getDealprice();
 			}
-			payment.setBillNumber(bill.getBillNumber());
 			payment.setPayable(payable);
 		}
 		

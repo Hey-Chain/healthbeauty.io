@@ -47,6 +47,18 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">付款客户：</label>
+			<div class="controls">
+				<form:input path="customerName" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge required"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">付款卡号：</label>
+			<div class="controls"><form:hidden path="memberCardId"/>
+				<form:input path="memberCard" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge required"/>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">收费单：</label>
 			<div class="controls">
 				<form:hidden path="billId" />

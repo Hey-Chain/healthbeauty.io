@@ -155,7 +155,7 @@
 			style="text-align:center;" class="form-search" onsubmit="loading('正在开卡，请稍等...');"><br/>
 			<input id="openCustomerId" type="hidden" name="openCustomerId" />
 			<input id="openMemberCardId" type="hidden" name="openMemberCardId" />
-			<input id="openMemberCardNumber" type="text" name="openMemberCardNumber" onkeypress="checkMemberCardInfo(this.value)" />
+			<input id="openMemberCardNumber" type="text" name="openMemberCardNumber" autocomplete="off" onkeypress="checkMemberCardInfo(this.value)" />
 			<br/><br/>
 			<div id="divMessage"></div><br/>
 			<input id="linkMemberCardBoxSubmit" class="btn btn-primary" type="button" onclick="submitMemberCard()" value="保    存   "/>　　

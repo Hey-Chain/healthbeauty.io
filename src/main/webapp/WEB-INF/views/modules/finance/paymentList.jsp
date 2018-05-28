@@ -26,7 +26,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>会员卡号：</label>
-				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-medium"/>
+				<form:input path="memberCard" htmlEscape="false" autocomplete="off" maxlength="64" class="input-medium"/>
 			</li>
 			<li><label>付款时间：</label>
 				<input name="paymentTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"

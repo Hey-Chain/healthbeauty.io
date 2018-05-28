@@ -84,13 +84,13 @@
 		<div class="control-group">
 			<label class="control-label">应付金额：</label>
 			<div class="controls">
-				<form:input path="payable" htmlEscape="false" class="input-xlarge  number"/>
+				<form:input path="payable" htmlEscape="false" autocomplete="off" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">付款金额：</label>
 			<div class="controls">
-				<form:input path="amount" htmlEscape="false" class="input-xlarge  number"/>
+				<form:input path="amount" htmlEscape="false" autocomplete="off" class="input-xlarge  number"/>
 			</div>
 		</div>
 		<div class="control-group">

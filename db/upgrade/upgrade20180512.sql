@@ -1,4 +1,10 @@
 set character set utf8;
+GO
+
+alter table crm_customer drop column membercard;
+alter table crm_customer add member_card_Id varchar(64) DEFAULT NULL COMMENT '会员卡编号';
+alter table crm_customer add member_card_Number varchar(32) DEFAULT NULL COMMENT '会员卡号';
+GO
 
 -- ----------------------------
 -- Table structure for crm_member_card
@@ -61,11 +67,6 @@ CREATE TABLE `crm_balance_decrease` (
   KEY `crm_balance_decrease_del_flag` (`del_flag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='余额减少表';
 GO
-
-alter table crm_customer drop column membercard;
-alter table crm_customer add member_card_Id varchar(64) DEFAULT NULL COMMENT '会员卡编号';
-alter table crm_customer add member_card_Number varchar(32) DEFAULT NULL COMMENT '会员卡号';
-
 
 -- ----------------------------
 -- Table structure for crm_balance_in_out

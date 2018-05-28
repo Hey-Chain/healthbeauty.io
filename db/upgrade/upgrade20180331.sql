@@ -9,6 +9,7 @@ alter table oa_project add price decimal(10,2) NULL comment '单价';
 DROP TABLE IF EXISTS `f_bill`;
 CREATE TABLE `f_bill` (
   `id` varchar(64) NOT NULL COMMENT '编号',
+  `bill_number` varchar(64) NULL COMMENT '收费单编码',
   `customer_id` varchar(64) NOT NULL COMMENT '客户',
   `bill_time` datetime DEFAULT NULL COMMENT '开单时间',
   `attendance_id` varchar(64) DEFAULT NULL COMMENT '就诊登记Id',

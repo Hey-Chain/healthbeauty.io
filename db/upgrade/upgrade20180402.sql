@@ -1,7 +1,5 @@
 set character set utf8;
 
-alter table f_bill add bill_number varchar(64) NULL COMMENT '收费单编码';
-
 -- ----------------------------
 -- Table structure for f_payment
 -- ----------------------------
@@ -9,6 +7,7 @@ DROP TABLE IF EXISTS `f_payment`;
 CREATE TABLE `f_payment` (
   `id` varchar(64) NOT NULL COMMENT '编号',
   `bill_id` varchar(64) NOT NULL COMMENT '收费单',
+  `payment_number` varchar(64) NULL COMMENT '付款单编码',
   `payment_time` datetime DEFAULT NULL COMMENT '付款时间',
   `payment_type` varchar(64) DEFAULT NULL COMMENT '支付方式',
   `payable` decimal(10, 2) DEFAULT NULL COMMENT '应付金额',

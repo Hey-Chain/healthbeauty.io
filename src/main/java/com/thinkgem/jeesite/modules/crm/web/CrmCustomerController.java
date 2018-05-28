@@ -203,7 +203,7 @@ public class CrmCustomerController extends BaseController {
 	@RequestMapping(value = "byMemberCard/{memberCard}")
 	public CrmCustomer getByMemberCard(@PathVariable("memberCard") String memberCard) {
 		CrmCustomer searchCustomer = new CrmCustomer();
-		searchCustomer.setMemberCardId(memberCard);
+		searchCustomer.setMemberCardNumber(memberCard);
 		List<CrmCustomer> customerResult = customerService.findList(searchCustomer);
 		return customerResult.size() == 0 ? new CrmCustomer(): customerResult.get(0);
 	}

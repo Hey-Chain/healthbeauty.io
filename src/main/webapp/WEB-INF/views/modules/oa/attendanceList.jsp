@@ -29,7 +29,7 @@
 				<form:input path="memberCard" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li><label>客户姓名：</label>
-				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium"/>
+				<form:input path="customerName" htmlEscape="false" maxlength="64" class="input-medium" autocomplete="false"/>
 			</li>
 			<li><label>就诊时间：</label>
 				<input name="attendanceTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"

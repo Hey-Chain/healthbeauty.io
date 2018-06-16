@@ -10,6 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
  * 金额增加流水Entity
+ * 因为客户没有会员卡，所以要同时记入客户Id
  * @author HEY-Chain
  * @version 2018-05-22
  */
@@ -20,6 +21,16 @@ public class CrmBalanceInOut extends DataEntity<CrmBalanceInOut> {
 	private Integer operateType;			// 操作类型
 	private Double changeAmount;		// 增加金额
 	
+	private String customerId;			// 客户Id
+	
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
 	/**
 	 * 0:减少,1:增加
 	 * @return 操作类型
@@ -30,9 +41,9 @@ public class CrmBalanceInOut extends DataEntity<CrmBalanceInOut> {
 	
 	/**
 	 * 0:减少,1:增加
-	 * @return 操作类型
+	 * @param 操作类型
 	 */
-	public void setOperatetType(Integer operateType) {
+	public void setOperateType(Integer operateType) {
 		this.operateType = operateType;
 	}
 	

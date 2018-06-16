@@ -27,7 +27,7 @@
 	</select>
 	
 	<select id="findList" resultType="CrmBalanceInOut">
-		SELECT 
+		SELECT DISTINCT 
 			<include refid="crmBalanceInOutColumns"/>
 		FROM crm_balance_in_out a
 		<include refid="crmBalanceInOutJoins"/>
@@ -35,6 +35,9 @@
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="memberCardId != null and memberCardId != ''">
 				AND a.member_card_id = #{memberCardId}
+			</if>
+			<if test="customerId != null and customerId != ''">
+				AND a.customer_id = #{customerId}
 			</if>
 		</where>
 		<choose>

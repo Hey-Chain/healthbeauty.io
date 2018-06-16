@@ -107,15 +107,16 @@ public class CrmMemberCardController extends BaseController {
 	}
 
 	/**
-	 * 根据会员卡号获取客户
+	 * 获取客户余额
 	 * @param memberCard
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "getBalance/{memberCardId}")
-	public Double getBalance(@PathVariable("memberCardId") String memberCardId) {
+	@RequestMapping(value = "getBalance/{memberCardId}/{customerId}")
+	public Double getBalance(@PathVariable("memberCardId") String memberCardId, String customerId) {
 		CrmBalanceInOut crmBalanceIncrease = new CrmBalanceInOut();
 		crmBalanceIncrease.setMemberCardId(memberCardId);
+		crmBalanceIncrease.setCustomerId(customerId);
 		crmBalanceIncrease.setDelFlag("0");
 		
 		Double balanceAmount = Double.valueOf("0");
@@ -135,11 +136,12 @@ public class CrmMemberCardController extends BaseController {
 	 */
 	@RequiresPermissions("crm:crmMemberCard:edit")
 	@RequestMapping(value = "addMemberBalance")
-	public String addMemberBalance(String inchargeMemberCardId, Double inchargeAmount, RedirectAttributes redirectAttributes) {
+	public String addMemberBalance(String inchargeMemberCardId, String inchargeCustomerId, Double inchargeAmount, RedirectAttributes redirectAttributes) {
 		// 余额增加
 		CrmBalanceInOut crmBalanceInOut = new CrmBalanceInOut();
 		crmBalanceInOut.setMemberCardId(inchargeMemberCardId);
-		crmBalanceInOut.setOperatetType(1);
+		crmBalanceInOut.setCustomerId(inchargeCustomerId);
+		crmBalanceInOut.setOperateType(1);
 		crmBalanceInOut.setChangeAmount(inchargeAmount);
 		crmBalanceInOutService.save(crmBalanceInOut);
 		

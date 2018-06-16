@@ -75,19 +75,22 @@ public class ReservationController extends BaseController {
 	@RequiresPermissions("oa:reservation:view")
 	@RequestMapping(value = "form")
 	public String form(Reservation reservation, Model model) {
-
+		
+		List<CrmCustomer> customers = customerService.findList(new CrmCustomer());
+		model.addAttribute("customerList", customers);		
 		if(reservation.getIsNewRecord() && StringUtils.isNotBlank(reservation.getCustomerId())) {
-			CrmCustomer cust = customerService.get(reservation.getCustomerId());
-			reservation.setCustomerName(cust.getCustomerName());
-			reservation.setMemberCard(cust.getMemberCardNumber());
+			for (CrmCustomer cust : customers) {
+				if(cust.getId().equals(reservation.getCustomerId())) {
+					reservation.setCustomerName(cust.getCustomerName());
+					reservation.setMemberCard(cust.getMemberCardNumber());
+					break;
+				}
+			}
 		}
 		
 		List<OaProject> projectList = projectService.findList(new OaProject());
 		model.addAttribute("projectList", projectList);
 		
-		//List<CrmCustomer> customerList = customerService.findList(new CrmCustomer());
-		//model.addAttribute("customerList", customerList);
-
 		List<User> doctors = systemService.findUserByRoleId(Role.DOCTOR_ROLE_ID);
 		model.addAttribute("doctorList", doctors);
 

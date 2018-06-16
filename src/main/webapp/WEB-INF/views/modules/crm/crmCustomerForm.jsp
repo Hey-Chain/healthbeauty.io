@@ -28,10 +28,11 @@
 		});
 		
 		// 获取余额
-		function getMemberBalance(){			
+		function getMemberBalance(){
 			var memberCardId = $('#memberCardId').val();
+			var customerId = $('#id').val();
 			if(memberCardId){
-				$.getJSON('${ctx}/crm/crmMemberCard/getBalance/'+memberCardId , function(data) {
+				$.getJSON('${ctx}/crm/crmMemberCard/getBalance/'+memberCardId+'/'+customerId, function(data) {
 					if(typeof data == 'number'){
 						$('#divBalance').text(data.toFixed(2));
 					}else{
@@ -109,6 +110,7 @@
 				console.dir('updateMemberBalanceBox:'+$('#inchargeMemberCardId').val());
 			}});
 			$('#inchargeMemberCardId').val($('#memberCardId').val());
+			$('#inchargeCustomerId').val($('#id').val());
 		}
 		
 		function inchargeMemberCard(){
@@ -165,6 +167,7 @@
 		<form id="memberBalanceForm" action="${ctx}/crm/crmMemberCard/addMemberBalance" method="post" enctype="multipart/form-data"
 			style="text-align:center;" class="form-search" onsubmit="loading('正在充值，请稍等...');"><br/>
 			<input id="inchargeMemberCardId" type="hidden" name="inchargeMemberCardId" />
+			<input id="inchargeCustomerId" type="hidden" name="inchargeCustomerId" />
 			金额：<input id="inchargeAmount" type="number" name="inchargeAmount" />
 			<br/><br/>
 			<div id="divInchargeMessage"></div><br/>

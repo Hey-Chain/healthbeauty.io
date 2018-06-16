@@ -54,7 +54,8 @@ public class PaymentService extends CrudService<PaymentDao, Payment> {
 		CrmBalanceInOut outModel = new CrmBalanceInOut();
 		outModel.setChangeAmount(payment.getAmount());
 		outModel.setMemberCardId(payment.getMemberCardId());
-		outModel.setOperatetType(0);
+		outModel.setCustomerId(payBill.getCustomerId());
+		outModel.setOperateType(0);
 		balanceInOutService.save(outModel);
 		
 		super.save(payment);

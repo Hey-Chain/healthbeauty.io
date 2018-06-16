@@ -72,16 +72,20 @@ public class AttendanceController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(Attendance attendance, Model model) {
 		
+		List<CrmCustomer> customers = customerService.findList(new CrmCustomer());
+		model.addAttribute("customerList", customers);
 		if(attendance.getIsNewRecord() && StringUtils.isNotBlank(attendance.getCustomerId())) {
-			CrmCustomer cust = customerService.get(attendance.getCustomerId());
-			attendance.setCustomerName(cust.getCustomerName());
-			attendance.setCustomerId(cust.getId());
-			attendance.setMemberCardId(cust.getMemberCardId());
-			attendance.setMemberCard(cust.getMemberCardNumber());
+			for (CrmCustomer cust : customers) {
+				if(cust.getId().equals(attendance.getCustomerId())) {
+					attendance.setCustomerName(cust.getCustomerName());
+					attendance.setMemberCardId(cust.getMemberCardId());
+					attendance.setMemberCard(cust.getMemberCardNumber());
+					break;
+				}
+			}
 		}
 		
 		List<User> doctors = systemService.findUserByRoleId(Role.COUNSELOR_ROLE_ID);
-		
 		model.addAttribute("counselorList", doctors);
 		model.addAttribute("attendance", attendance);
 		

@@ -73,14 +73,15 @@
 			<label class="control-label">会员卡号：</label>
 			<div class="controls">
 				<form:input path="memberCard" htmlEscape="false" maxlength="64" autocomplete="off" class="input-xlarge " />
-				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group"> 	
 			<label class="control-label">客户：</label>
 			<div class="controls">
-				<form:hidden path="customerId" />
-				<form:input path="customerName" htmlEscape="false" readonly="true" maxlength="64" class="input-xlarge "/>
+				<form:select path="customerId" class="input-mini">
+					<form:options items="${customerList}" itemLabel="customerName" itemValue="id" htmlEscape="false" />
+				</form:select>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">

@@ -1,0 +1,1 @@
+alter table crm_balance_in_out add customer_id varchar(64);

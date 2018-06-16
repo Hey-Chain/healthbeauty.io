@@ -77,8 +77,9 @@ public class CrmCustomerService extends CrudService<CrmCustomerDao, CrmCustomer>
 		balanceInOut.setMemberCardId(memberCard.getId());
 		balanceInOut.setDelFlag("0");
 		balanceInOut.setChangeAmount(Math.abs(clearAmount));		
-		balanceInOut.setOperatetType(clearAmount > 0 ? 0: 1);
+		balanceInOut.setOperateType(clearAmount > 0 ? 0: 1);
 		balanceInOut.setRemarks("退卡清款");
+		balanceInOut.setCustomerId(cust.getId());
 		balanceInOutService.save(balanceInOut);
 		
 		// 清除相关记录

@@ -247,7 +247,7 @@
 								<input id="billitemList{{idx}}_dealprice" name="billitemList[{{idx}}].dealprice" type="text" value="{{row.dealprice}}" maxlength="64" class="input-small required"/>
 							</td>
 							<td>
-								<textarea id="billitemList{{idx}}_remarks" name="billitemList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
+								<textarea id="billitemList{{idx}}_remarks" name="billitemList[{{idx}}].remarks" rows="2" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
 							</td>
 							<shiro:hasPermission name="finance:bill:edit"><td class="text-center" width="10">
 								{{#delBtn}}<span class="close" onclick="delRow(this, '#billitemList{{idx}}')" title="删除">&times;</span>{{/delBtn}}

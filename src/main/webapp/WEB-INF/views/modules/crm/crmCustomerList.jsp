@@ -19,7 +19,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/crm/crmCustomer/">客户信息列表</a></li>
-		<shiro:hasPermission name="cust:crmCustomer:edit"><li><a href="${ctx}/crm/crmCustomer/form">客户信息添加</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="crm:crmCustomer:edit"><li><a href="${ctx}/crm/crmCustomer/form">客户信息添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="crmCustomer" action="${ctx}/crm/crmCustomer/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

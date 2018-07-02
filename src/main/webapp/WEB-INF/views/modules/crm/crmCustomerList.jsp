@@ -55,7 +55,7 @@
 				<th>年龄</th>
 				<th>出生日期</th>
 				<th>备注信息</th>
-				<shiro:hasPermission name="cust:crmCustomer:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="crm:crmCustomer:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -82,7 +82,7 @@
 				<td>
 					${crmCustomer.remarks}
 				</td>
-				<shiro:hasPermission name="cust:crmCustomer:edit"><td>
+				<shiro:hasPermission name="crm:crmCustomer:edit"><td>
     				<a href="${ctx}/crm/crmCustomer/form?id=${crmCustomer.id}">修改</a> | 
     				<a href="${ctx}/oa/reservation/form?customerId=${crmCustomer.id}">预约</a> | 
     				<a href="${ctx}/oa/attendance/form?customerId=${crmCustomer.id}">就诊</a> | 

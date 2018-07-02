@@ -178,7 +178,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/crm/crmCustomer/">客户信息列表</a></li>
-		<li class="active"><a href="${ctx}/crm/crmCustomer/form?id=${crmCustomer.id}">客户信息<shiro:hasPermission name="cust:crmCustomer:edit">${not empty crmCustomer.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="cust:crmCustomer:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/crm/crmCustomer/form?id=${crmCustomer.id}">客户信息<shiro:hasPermission name="crm:crmCustomer:edit">${not empty crmCustomer.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="crm:crmCustomer:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="crmCustomer" action="${ctx}/crm/crmCustomer/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -271,16 +271,6 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">客户组：</label>
-			<div class="controls">
-				<form:select path="customerGroup" class="input-medium required">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('customer_group')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="control-group">
 			<label class="control-label">档案号码：</label>
 			<div class="controls">
 				<form:input path="customerNo" htmlEscape="false" maxlength="16" class="input-medium "/>
@@ -320,7 +310,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="cust:crmCustomer:edit"><input id="btnSubmit" class="btn btn-primary" type="button" onclick="saveFrom()" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<shiro:hasPermission name="crm:crmCustomer:edit"><input id="btnSubmit" class="btn btn-primary" type="button" onclick="saveFrom()" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
